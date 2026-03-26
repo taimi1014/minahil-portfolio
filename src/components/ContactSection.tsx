@@ -14,24 +14,24 @@ export default function ContactSection({ themeColor }: ContactSectionProps) {
 
   return (
     <section>
-      <h2 className="text-[13px] font-semibold mb-2" style={{ color: accent }}>
+      <h2 className="text-[12px] font-semibold mb-1.5" style={{ color: accent }}>
         Contact
       </h2>
-      <div className="space-y-[6px]">
+      <div className="space-y-[4px]">
         {[
           { label: "Email", value: "minahilawan@gmail.com", href: "mailto:minahilawan@gmail.com" },
           { label: "Call", value: "+971561861243", href: "tel:+971561861243" },
           { label: "LinkedIn", value: "@minahilawan", href: "https://www.linkedin.com/in/minahilawan", external: true },
         ].map((item) => (
           <div key={item.label} className="flex items-center group">
-            <span className="text-[11.5px] w-[55px] shrink-0" style={{ color: muted, opacity: 0.7 }}>
+            <span className="text-[11px] w-[55px] shrink-0" style={{ color: muted, opacity: 0.7 }}>
               {item.label}
             </span>
             <a
               href={item.href}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
-              className="text-[11.5px] transition-all duration-200 hover:opacity-70 hover:translate-x-[2px]"
+              className="text-[11px] transition-all duration-200 hover:opacity-70 hover:translate-x-[2px]"
               style={{ color: accent }}
             >
               {item.value}

@@ -73,6 +73,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
     <aside
       className="w-full lg:w-[30%] lg:max-w-[420px] h-full hide-scrollbar overflow-y-auto relative"
     >
+      <div className="flex flex-col min-h-full">
       {/* Falling sunflower stickers */}
       <AnimatePresence>
         {sunflowers.map((flower) => (
@@ -138,7 +139,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
         </motion.div>
       </div>
 
-      <div className="px-8 pt-4 pb-6 lg:px-12 lg:pt-6 lg:pb-8">
+      <div className="px-8 pt-4 pb-4 lg:px-12 lg:pt-6 lg:pb-4 flex-1">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,9 +210,9 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
 
       </div>
 
-      {/* Contact — sticky footer at bottom of sidebar */}
+      {/* Contact — footer pinned to bottom via flex */}
       <div
-        className="sticky bottom-0 left-0 right-0 px-8 py-4 lg:px-12 lg:py-5 z-20"
+        className="mt-auto px-8 py-3 lg:px-12 lg:py-3 z-20 sticky bottom-0"
         style={{
           backgroundColor: themeColor === "#FFFFFF" ? "rgba(255,255,255,0.9)" : `${themeColor}ee`,
           backdropFilter: "blur(12px)",
@@ -220,6 +221,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
         }}
       >
         <ContactSection themeColor={themeColor} />
+      </div>
       </div>
     </aside>
   );
