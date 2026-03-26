@@ -36,6 +36,16 @@ function getPatternCSS(pattern: string, color: string): React.CSSProperties | nu
       return {
         backgroundImage: `repeating-linear-gradient(45deg, rgba(${r},${g},${b},0.08), rgba(${r},${g},${b},0.08) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(-45deg, rgba(${r},${g},${b},0.08), rgba(${r},${g},${b},0.08) 1px, transparent 1px, transparent 12px)`,
       };
+    case "waves":
+      return {
+        backgroundImage: `repeating-linear-gradient(0deg, rgba(${r},${g},${b},0.08) 0px, rgba(${r},${g},${b},0.08) 1px, transparent 1px, transparent 6px, rgba(${r},${g},${b},0.06) 6px, rgba(${r},${g},${b},0.06) 7px, transparent 7px, transparent 12px)`,
+        backgroundSize: "100% 12px",
+      };
+    case "hex":
+      return {
+        backgroundImage: `radial-gradient(circle at 0 0, transparent 8px, rgba(${r},${g},${b},0.06) 8px, rgba(${r},${g},${b},0.06) 9px, transparent 9px), radial-gradient(circle at 10px 6px, transparent 8px, rgba(${r},${g},${b},0.06) 8px, rgba(${r},${g},${b},0.06) 9px, transparent 9px)`,
+        backgroundSize: "20px 12px",
+      };
     default:
       return null;
   }
@@ -72,13 +82,14 @@ export default function Home() {
   const [themeColor, setThemeColor] = useState("#FDE8EC");
   const [noiseLevel, setNoiseLevel] = useState(0);
   const [pattern, setPattern] = useState("none");
+  const [patternOpacity, setPatternOpacity] = useState(1);
 
   const noiseUrl = useNoiseTexture();
   const patternStyles = getPatternCSS(pattern, themeColor);
 
   return (
     <div
-      className="min-h-screen h-screen overflow-hidden transition-colors duration-500 relative"
+      className="min-h-screen lg:h-screen lg:overflow-hidden transition-colors duration-500 relative"
       style={{ backgroundColor: themeColor }}
     >
       {/* Canvas-generated noise texture overlay */}
@@ -99,11 +110,11 @@ export default function Home() {
       {patternStyles && (
         <div
           className="absolute inset-0 z-0 pointer-events-none"
-          style={patternStyles}
+          style={{ ...patternStyles, opacity: patternOpacity }}
         />
       )}
 
-      <div className="flex flex-col lg:flex-row h-full relative z-10">
+      <div className="flex flex-col lg:flex-row lg:h-full relative z-10">
         <Sidebar
           themeColor={themeColor}
           onThemeChange={setThemeColor}
@@ -111,10 +122,12 @@ export default function Home() {
           onNoiseChange={setNoiseLevel}
           pattern={pattern}
           onPatternChange={setPattern}
+          patternOpacity={patternOpacity}
+          onPatternOpacityChange={setPatternOpacity}
         />
 
         {/* Right column — tabs on colored bg, content in white box */}
-        <div className="flex-1 flex flex-col h-full pr-4 pt-4 pb-4">
+        <div className="flex-1 flex flex-col lg:h-full px-3 pt-3 pb-3 lg:pl-0 lg:pr-4 lg:pt-4 lg:pb-4">
           <ProjectGrid themeColor={themeColor} />
         </div>
       </div>

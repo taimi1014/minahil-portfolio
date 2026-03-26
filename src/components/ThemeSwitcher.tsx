@@ -22,6 +22,8 @@ export const PATTERNS = [
   { name: "Grid", value: "grid" },
   { name: "Diagonal", value: "diagonal" },
   { name: "Cross", value: "cross" },
+  { name: "Waves", value: "waves" },
+  { name: "Hex", value: "hex" },
 ];
 
 function haptic() {
@@ -37,6 +39,8 @@ interface ThemeSwitcherProps {
   onNoiseChange: (level: number) => void;
   pattern: string;
   onPatternChange: (pattern: string) => void;
+  patternOpacity: number;
+  onPatternOpacityChange: (opacity: number) => void;
 }
 
 export default function ThemeSwitcher({
@@ -46,6 +50,8 @@ export default function ThemeSwitcher({
   onNoiseChange,
   pattern,
   onPatternChange,
+  patternOpacity,
+  onPatternOpacityChange,
 }: ThemeSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dotColor = THEME_COLORS.find(t => t.value === currentColor)?.dot || "#D0D0D0";
@@ -132,13 +138,20 @@ export default function ThemeSwitcher({
 
               {/* Pattern selector */}
               <div className="mt-3 pt-3 border-t border-border">
-                <span className="text-[11px] text-text-secondary mb-2 block">Pattern</span>
-                <div className="flex gap-1.5">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] text-text-secondary">Pattern</span>
+                  {pattern !== "none" && (
+                    <span className="text-[10px] text-text-tertiary tabular-nums">
+                      {Math.round(patternOpacity * 100)}%
+                    </span>
+                  )}
+                </div>
+                <div className="grid grid-cols-4 gap-1.5">
                   {PATTERNS.map((p) => (
                     <button
                       key={p.value}
                       onClick={() => { haptic(); onPatternChange(p.value); }}
-                      className={`relative flex-1 h-8 rounded-md border text-[10px] font-medium transition-all duration-150 cursor-pointer ${
+                      className={`relative h-7 rounded-md border text-[9px] font-medium transition-all duration-150 cursor-pointer ${
                         pattern === p.value
                           ? "border-text-primary bg-surface text-text-primary"
                           : "border-border text-text-tertiary hover:border-text-secondary/30"
@@ -149,6 +162,20 @@ export default function ThemeSwitcher({
                     </button>
                   ))}
                 </div>
+                {pattern !== "none" && (
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="1"
+                    step="0.05"
+                    value={patternOpacity}
+                    onChange={(e) => onPatternOpacityChange(parseFloat(e.target.value))}
+                    className="w-full h-2 rounded-full appearance-none cursor-pointer mt-2"
+                    style={{
+                      background: `linear-gradient(to right, ${dotColor} ${patternOpacity * 100}%, #E5E5E5 ${patternOpacity * 100}%)`,
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           </>
@@ -182,6 +209,16 @@ function PatternPreview({ type, active }: { type: string; active: boolean }) {
   if (type === "cross") {
     return (
       <span className="absolute inset-1 rounded-sm" style={{ backgroundImage: `repeating-linear-gradient(45deg, ${color}, ${color} 0.5px, transparent 0.5px, transparent 5px), repeating-linear-gradient(-45deg, ${color}, ${color} 0.5px, transparent 0.5px, transparent 5px)` }} />
+    );
+  }
+  if (type === "waves") {
+    return (
+      <span className="absolute inset-1 rounded-sm" style={{ backgroundImage: `repeating-linear-gradient(0deg, ${color} 0px, ${color} 0.5px, transparent 0.5px, transparent 3px, ${color} 3px, ${color} 3.5px, transparent 3.5px, transparent 6px)`, backgroundSize: "8px 6px" }} />
+    );
+  }
+  if (type === "hex") {
+    return (
+      <span className="absolute inset-1 rounded-sm" style={{ backgroundImage: `radial-gradient(circle at 0 0, transparent 4px, ${color} 4px, ${color} 4.5px, transparent 4.5px), radial-gradient(circle at 5px 3px, transparent 4px, ${color} 4px, ${color} 4.5px, transparent 4.5px)`, backgroundSize: "10px 6px" }} />
     );
   }
   return null;

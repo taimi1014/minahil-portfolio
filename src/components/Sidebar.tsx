@@ -24,9 +24,11 @@ interface SidebarProps {
   onNoiseChange: (level: number) => void;
   pattern: string;
   onPatternChange: (pattern: string) => void;
+  patternOpacity: number;
+  onPatternOpacityChange: (opacity: number) => void;
 }
 
-export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoiseChange, pattern, onPatternChange }: SidebarProps) {
+export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoiseChange, pattern, onPatternChange, patternOpacity, onPatternOpacityChange }: SidebarProps) {
   const [sunflowers, setSunflowers] = useState<{ id: number; x: number; r: number; s: number }[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -71,7 +73,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
 
   return (
     <aside
-      className="w-full lg:w-[30%] lg:max-w-[420px] h-full hide-scrollbar overflow-y-auto relative"
+      className="w-full lg:w-[30%] lg:max-w-[420px] lg:h-full hide-scrollbar lg:overflow-y-auto relative"
     >
       <div className="flex flex-col min-h-full">
       {/* Falling sunflower stickers */}
@@ -93,12 +95,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
 
       {/* Top pill bar — sticky, doesn't scroll */}
       <div
-        className="sticky top-0 z-30 px-8 pt-4 pb-2 lg:px-12"
-        style={{
-          backgroundColor: themeColor === "#FFFFFF" ? "rgba(255,255,255,0.85)" : `${themeColor}dd`,
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-        }}
+        className="lg:sticky lg:top-0 z-30 px-6 pt-4 pb-2 lg:px-12"
       >
         <motion.div
           className="inline-flex items-center gap-1.5 px-1 py-1 rounded-full"
@@ -124,6 +121,8 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
               onNoiseChange={onNoiseChange}
               pattern={pattern}
               onPatternChange={onPatternChange}
+              patternOpacity={patternOpacity}
+              onPatternOpacityChange={onPatternOpacityChange}
             />
           </div>
           <button
@@ -139,7 +138,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
         </motion.div>
       </div>
 
-      <div className="px-8 pt-4 pb-4 lg:px-12 lg:pt-6 lg:pb-4 flex-1">
+      <div className="px-6 pt-4 pb-4 lg:px-12 lg:pt-6 lg:pb-4 flex-1">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -212,13 +211,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
 
       {/* Contact — footer pinned to bottom via flex */}
       <div
-        className="mt-auto px-8 py-3 lg:px-12 lg:py-3 z-20 sticky bottom-0"
-        style={{
-          backgroundColor: themeColor === "#FFFFFF" ? "rgba(255,255,255,0.9)" : `${themeColor}ee`,
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          borderTop: `1px solid rgba(255,255,255,0.3)`,
-        }}
+        className="mt-auto px-8 py-3 lg:px-12 lg:py-3 z-20 lg:sticky lg:bottom-0"
       >
         <ContactSection themeColor={themeColor} />
       </div>

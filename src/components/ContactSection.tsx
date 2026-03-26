@@ -21,7 +21,7 @@ export default function ContactSection({ themeColor }: ContactSectionProps) {
         {[
           { label: "Email", value: "minahilawan@gmail.com", href: "mailto:minahilawan@gmail.com" },
           { label: "Call", value: "+971561861243", href: "tel:+971561861243" },
-          { label: "LinkedIn", value: "@minahilawan", href: "https://www.linkedin.com/in/minahilawan", external: true },
+          { label: "LinkedIn", value: "@minahilawan", href: "https://www.linkedin.com/in/minahil-awan/", external: true },
         ].map((item) => (
           <div key={item.label} className="flex items-center group">
             <span className="text-[11px] w-[55px] shrink-0" style={{ color: muted, opacity: 0.7 }}>

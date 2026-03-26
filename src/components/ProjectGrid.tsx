@@ -37,7 +37,7 @@ export default function ProjectGrid({ themeColor }: ProjectGridProps) {
           border: "1px solid rgba(255,255,255,0.5)",
         }}
       >
-        <div className="h-full overflow-y-auto px-6 py-6 lg:px-8 lg:py-8">
+        <div className="h-full overflow-y-auto px-4 py-5 lg:px-8 lg:py-8">
           <AnimatePresence mode="wait">
             {activeTab === 0 ? (
               <motion.div
