@@ -2,47 +2,43 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    slug: "tranxpay",
-    title: "Borderless Banking For Global Citizens",
+    slug: "crediblex",
+    title: "AI-Enabled Credit Assessment Platform",
     description:
-      "TranxPay is your mobile banking buddy. We give you everything you need to transact - globally and locally - from a single simple app.",
+      "Led end-to-end design for CredibleX's lending platform — producing wireframes, interactive prototypes, and high-fidelity UI assets that contributed to a 17% increase in user engagement.",
     imageSrc: "/images/projects/tranxpay.png",
-    imageAlt: "TranxPay mobile banking app screens showing account balance, crypto portfolio, and send money features",
+    imageAlt: "CredibleX lending platform showing loan management and credit assessment interfaces",
   },
   {
-    slug: "moodanalyzer",
-    title: "MoodAnalyzer — Prompt Engineering Platform",
+    slug: "voltro-tmc",
+    title: "TMC Trucking SaaS — Abu Dhabi Gov",
     description:
-      "A comprehensive prompt engineering and model evaluation platform for testing and comparing LLM configurations side by side.",
+      "Designed the TMC Trucking SaaS platform from the ground up, covering user flows, personas, wireframes, and usability testing — resulting in a 40% reduction in operational bottlenecks.",
     imageSrc: "/images/projects/moodanalyzer.png",
-    imageAlt: "MoodAnalyzer dark dashboard showing prompt configuration and simulator interface",
+    imageAlt: "TMC Trucking SaaS platform dashboard with logistics management interface",
   },
   {
-    slug: "revolut-aiops",
-    title: "LLM Model Online Evaluation-Revolut AIOps Platform",
+    slug: "voltro-tadweer",
+    title: "Tadweer — BI Platform for Data Visibility",
     description:
-      "Teams lacked an easy, safe way to validate LLMs in production. Existing processes were manual, error-prone, and slow, resulting in conservative rollouts and missed opportunities to ship better models faster.",
+      "Led UX strategy for a BI platform handling complex data — enabled leadership to make faster decisions and reduced data risk exposure by 28% through structured data visibility.",
     imageSrc: "/images/projects/revolut-aiops.png",
-    imageAlt: "Revolut AIOps evaluation dashboard with fluency charts and cluster analysis",
-    companyLogo: "/images/logos/revolut.svg",
-    companyLogoAlt: "Revolut",
+    imageAlt: "Tadweer BI platform with data analytics and reporting dashboards",
   },
   {
-    slug: "mira-ai71",
-    title: "Enhancing Customer Experience Through Voice AI",
+    slug: "logicon-onyx",
+    title: "OnyxNFT Marketplace Builder",
     description:
-      "Despite MIRA's innovative AI-driven approach, early user feedback revealed critical gaps in the experience",
+      "Designed the OnyxNFT marketplace builder tool from scratch — developed flows for minting, storefront creation, smart contract integration, and asset trading. Improved user acquisition by 22.1%.",
     imageSrc: "/images/projects/mira-ai71.png",
-    imageAlt: "MIRA call analytics dashboard with donut charts showing inbound calls classification",
-    companyLogo: "/images/logos/ai71.svg",
-    companyLogoAlt: "AI71",
+    imageAlt: "OnyxNFT marketplace builder showing minting and storefront creation flows",
   },
   {
-    slug: "desertcart",
-    title: "Desertcart Mobile App",
+    slug: "programmers-force",
+    title: "Shufti Pro Design System",
     description:
-      "Customers often struggle to navigate through over 700 categories to find the products that meet their needs.",
+      "Designed and launched the Shufti Pro Design System, improving visual consistency and reducing frontend development time by ~30% across teams. Increased overall system usability by 35%.",
     imageSrc: "/images/projects/desertcart.png",
-    imageAlt: "Desertcart mobile app showing product search and order tracking screens",
+    imageAlt: "Shufti Pro Design System components and identity verification interfaces",
   },
 ];

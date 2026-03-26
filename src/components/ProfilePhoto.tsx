@@ -12,8 +12,8 @@ export default function ProfilePhoto() {
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       <Image
-        src="/images/profile.svg"
-        alt="Taimoor Nasir"
+        src="/images/profile.jpg"
+        alt="Minahil Awan"
         width={80}
         height={80}
         className="w-full h-full object-cover"

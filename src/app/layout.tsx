@@ -8,13 +8,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Taimoor Nasir — Product Designer",
+  title: "Minahil Awan — Lead Product Designer",
   description:
-    "Product Designer with 6+ years of experience, crafting consumer-facing products for startups and large tech companies.",
+    "Creative and results-driven Product Designer with 6+ years of experience shaping intuitive, high-impact experiences across AI, SaaS, fintech, and healthcare platforms.",
   openGraph: {
-    title: "Taimoor Nasir — Product Designer",
+    title: "Minahil Awan — Lead Product Designer",
     description:
-      "Product Designer with 6+ years of experience, crafting consumer-facing products for startups and large tech companies.",
+      "Creative and results-driven Product Designer with 6+ years of experience shaping intuitive, high-impact experiences across AI, SaaS, fintech, and healthcare platforms.",
     type: "website",
   },
 };
