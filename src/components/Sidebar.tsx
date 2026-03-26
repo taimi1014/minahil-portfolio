@@ -211,7 +211,11 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
 
       {/* Contact — footer pinned to bottom via flex */}
       <div
-        className="mt-auto px-8 py-3 lg:px-12 lg:py-3 z-20 lg:sticky lg:bottom-0"
+        className="mt-auto px-6 py-3 lg:px-12 lg:py-3 z-30 lg:sticky lg:bottom-0"
+        style={{
+          backgroundColor: themeColor,
+          borderTop: "1px solid rgba(255,255,255,0.3)",
+        }}
       >
         <ContactSection themeColor={themeColor} />
       </div>

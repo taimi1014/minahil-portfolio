@@ -56,6 +56,7 @@ export default function ProjectGrid({ themeColor }: ProjectGridProps) {
                     key={project.slug}
                     project={project}
                     index={index}
+                    themeColor={themeColor}
                   />
                 ))}
               </motion.div>
