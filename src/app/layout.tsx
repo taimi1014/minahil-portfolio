@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,10 +8,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const ibmSerif = IBM_Plex_Serif({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-jakarta",
+  variable: "--font-ibm-serif",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.variable} ${jakarta.variable} ${inter.className} bg-white text-text-primary`}>
+      <body className={`${inter.variable} ${ibmSerif.variable} ${inter.className} bg-white text-text-primary`}>
         {children}
       </body>
     </html>

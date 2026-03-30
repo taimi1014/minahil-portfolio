@@ -74,7 +74,7 @@ export default function Sidebar({ themeColor, onThemeChange, noiseLevel, onNoise
   return (
     <aside
       className="w-full lg:w-[30%] lg:max-w-[420px] lg:h-full hide-scrollbar lg:overflow-y-auto relative"
-      style={{ fontFamily: "var(--font-jakarta), sans-serif" }}
+      style={{ fontFamily: "var(--font-ibm-serif), serif" }}
     >
       <div className="flex flex-col min-h-full">
       {/* Falling sunflower stickers */}
