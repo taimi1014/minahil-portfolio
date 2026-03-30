@@ -3,10 +3,8 @@ import FigmaEmbed from "@/components/case-study/FigmaEmbed";
 import { embedCaseStudies } from "@/data/case-studies/embeds";
 
 export function generateStaticParams() {
-  return [
-    { slug: "crediblex" },
-    ...embedCaseStudies.map((cs) => ({ slug: cs.slug })),
-  ];
+  // All case studies come from embeds now; custom page kept for future use
+  return embedCaseStudies.map((cs) => ({ slug: cs.slug }));
 }
 
 export default async function CaseStudyPage({
