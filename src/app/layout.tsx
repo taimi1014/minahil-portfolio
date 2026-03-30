@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
         {/* Preload critical above-fold images */}
         <link rel="preload" href="/images/profile.webp" as="image" type="image/webp" />
-        <link rel="preload" href="/images/projects/tranxpay.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/images/projects/crediblex.webp" as="image" type="image/webp" />
         {/* DNS prefetch for fonts */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

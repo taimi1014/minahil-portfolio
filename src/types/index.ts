@@ -12,6 +12,7 @@ export interface Project {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  tags?: string[];
   companyLogo?: string;
   companyLogoAlt?: string;
   caseStudyUrl?: string;

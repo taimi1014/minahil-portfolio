@@ -87,6 +87,11 @@ export default function Home() {
   const noiseUrl = useNoiseTexture();
   const patternStyles = getPatternCSS(pattern, themeColor);
 
+  // Persist theme to localStorage for case study pages
+  useEffect(() => {
+    localStorage.setItem("portfolio-theme", themeColor);
+  }, [themeColor]);
+
   return (
     <div
       className="min-h-screen lg:h-screen lg:overflow-hidden transition-colors duration-500 relative"
