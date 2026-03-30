@@ -88,7 +88,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
           alt={project.imageAlt}
           width={1200}
           height={800}
-          className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03] rounded-[16px]"
           loading={index < 2 ? "eager" : "lazy"}
           placeholder={blurDataURL ? "blur" : "empty"}
           blurDataURL={blurDataURL}
