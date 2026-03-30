@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CaseStudySection } from "@/types/case-study";
 
@@ -31,44 +31,65 @@ export default function TableOfContents({
 }: TOCProps) {
   const activeIndex = sections.findIndex((s) => s.id === activeSection);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const dragRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
-  const dragStartY = useRef(0);
   const lastDragY = useRef(0);
+  const lastHapticSection = useRef(-1);
+  const dragVelocity = useRef(0);
 
-  // Drag-to-scroll: dragging on TOC scrolls the right content area
+  // Track active section changes for haptic ticks during drag
+  useEffect(() => {
+    if (isDragging.current && activeIndex !== lastHapticSection.current) {
+      lastHapticSection.current = activeIndex;
+      haptic(8);
+    }
+  }, [activeIndex]);
+
   const handleDragStart = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     isDragging.current = true;
     const y = "touches" in e ? e.touches[0].clientY : e.clientY;
-    dragStartY.current = y;
     lastDragY.current = y;
+    dragVelocity.current = 0;
+    lastHapticSection.current = -1;
     haptic(3);
   }, []);
 
   const handleDragMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     if (!isDragging.current) return;
+    e.preventDefault();
     const y = "touches" in e ? e.touches[0].clientY : e.clientY;
     const delta = lastDragY.current - y;
+    dragVelocity.current = delta;
     lastDragY.current = y;
 
-    // Scroll the right content area
     const contentArea = document.querySelector(".case-study-content");
     if (contentArea) {
-      contentArea.scrollTop += delta * 3;
+      contentArea.scrollTop += delta * 4;
     }
   }, []);
 
   const handleDragEnd = useCallback(() => {
-    if (isDragging.current) {
-      isDragging.current = false;
-      haptic(4);
+    if (!isDragging.current) return;
+    isDragging.current = false;
+
+    // Momentum scroll
+    const contentArea = document.querySelector(".case-study-content");
+    if (contentArea && Math.abs(dragVelocity.current) > 2) {
+      let velocity = dragVelocity.current * 3;
+      const decay = () => {
+        velocity *= 0.92;
+        if (Math.abs(velocity) > 0.5) {
+          contentArea.scrollTop += velocity;
+          requestAnimationFrame(decay);
+        }
+      };
+      requestAnimationFrame(decay);
     }
+    haptic(4);
   }, []);
 
   return (
     <nav
-      ref={dragRef}
-      className="h-full flex flex-col px-4 py-4 sticky top-0 select-none"
+      className="h-full flex flex-col px-3 py-4 sticky top-0 select-none"
       onMouseDown={handleDragStart}
       onMouseMove={handleDragMove}
       onMouseUp={handleDragEnd}
@@ -76,12 +97,12 @@ export default function TableOfContents({
       onTouchStart={handleDragStart}
       onTouchMove={handleDragMove}
       onTouchEnd={handleDragEnd}
-      style={{ cursor: "grab" }}
+      style={{ cursor: isDragging.current ? "grabbing" : "grab" }}
     >
-      {/* Back button — compact */}
+      {/* Back button */}
       <motion.button
         onClick={(e) => { e.stopPropagation(); onBack(); haptic(); }}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium self-start mb-3"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium self-start mb-4"
         style={{
           backgroundColor: "rgba(255,255,255,0.85)",
           color: accent,
@@ -101,8 +122,8 @@ export default function TableOfContents({
         Back
       </motion.button>
 
-      {/* TOC items — tight, no centering */}
-      <div className="space-y-px">
+      {/* TOC items — LEFT ALIGNED */}
+      <div className="space-y-0.5">
         {sections.map((section, index) => {
           const isActive = section.id === activeSection;
           const isPast = index <= activeIndex;
@@ -125,29 +146,39 @@ export default function TableOfContents({
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="flex items-center w-full rounded-md transition-all duration-150 relative overflow-hidden"
+              className="w-full rounded-md transition-all duration-150 relative overflow-hidden"
               style={{
-                padding: "5px 6px",
+                padding: "5px 8px",
                 backgroundColor: isActive
                   ? `${accent}10`
                   : isHovered
                     ? `${accent}05`
                     : "transparent",
                 cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                gap: "6px",
               }}
             >
-              {/* Section number */}
+              {/* Section number — fixed width left */}
               <span
-                className="text-[8px] font-mono tabular-nums flex-shrink-0 w-4"
-                style={{ color: isActive ? accent : `${accent}25` }}
+                className="font-mono tabular-nums flex-shrink-0"
+                style={{
+                  fontSize: "9px",
+                  color: isActive ? accent : `${accent}25`,
+                  width: "16px",
+                  textAlign: "left",
+                }}
               >
                 {String(index + 1).padStart(2, "0")}
               </span>
 
-              {/* Label + track */}
-              <div className="flex-1 min-w-0 ml-1">
+              {/* Label — left aligned, takes remaining space */}
+              <div className="flex-1 text-left">
                 <motion.span
-                  className="block text-[10.5px] truncate leading-tight"
+                  className="block truncate leading-tight"
+                  style={{ fontSize: "11px", textAlign: "left" }}
                   animate={{
                     color: isActive ? accent : isPast ? `${accent}60` : "#aaa",
                     fontWeight: isActive ? 600 : 400,
@@ -185,8 +216,13 @@ export default function TableOfContents({
               <AnimatePresence>
                 {isActive && (
                   <motion.div
-                    className="w-[4px] h-[4px] rounded-full flex-shrink-0 ml-1"
-                    style={{ backgroundColor: accent }}
+                    className="flex-shrink-0"
+                    style={{
+                      width: 4,
+                      height: 4,
+                      borderRadius: "50%",
+                      backgroundColor: accent,
+                    }}
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
@@ -202,18 +238,17 @@ export default function TableOfContents({
       {/* Spacer */}
       <div className="flex-1" />
 
-      {/* Overall progress — compact */}
+      {/* Progress */}
       <div className="px-1 pt-2">
         <div className="flex items-center justify-between mb-1">
           <span
-            className="text-[7px] font-semibold uppercase tracking-[0.12em]"
-            style={{ color: `${accent}35` }}
+            style={{ fontSize: "7px", color: `${accent}35`, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em" }}
           >
             Progress
           </span>
           <span
-            className="text-[8px] font-mono tabular-nums"
-            style={{ color: `${accent}45` }}
+            className="font-mono tabular-nums"
+            style={{ fontSize: "8px", color: `${accent}45` }}
           >
             {Math.round(scrollProgress * 100)}%
           </span>
