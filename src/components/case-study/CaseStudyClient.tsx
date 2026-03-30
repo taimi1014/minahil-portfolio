@@ -14,6 +14,8 @@ import ImageSlider from "@/components/case-study/sections/ImageSlider";
 import CompetitiveGrid from "@/components/case-study/sections/CompetitiveGrid";
 import DashboardSection from "@/components/case-study/sections/DashboardSection";
 import EmbeddedSection from "@/components/case-study/sections/EmbeddedSection";
+import SmeJourneySection from "@/components/case-study/sections/SmeJourneySection";
+import ImpactSection from "@/components/case-study/sections/ImpactSection";
 import PartnersImpact from "@/components/case-study/sections/PartnersImpact";
 
 function getCaseStudy(slug: string) {
@@ -197,19 +199,29 @@ export default function CaseStudyPage() {
             <ImageSlider flows={caseStudy.userFlows} accent={accent} themeColor={themeColor} />
           </div>
 
+          {/* SME Application Journey */}
+          <div data-section="sme-journey" className="px-6 lg:px-16 py-16 lg:py-24">
+            <SmeJourneySection data={caseStudy.smeJourney} accent={accent} themeColor={themeColor} />
+          </div>
+
           {/* Dashboard */}
-          <div data-section="dashboard" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="dashboard" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
             <DashboardSection data={caseStudy.dashboard} accent={accent} themeColor={themeColor} />
           </div>
 
           {/* Mission Control */}
           <div data-section="mission-control" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
-            <DashboardSection data={caseStudy.missionControl} accent={accent} themeColor={themeColor} />
+            <DashboardSection data={caseStudy.missionControl} accent={accent} themeColor={themeColor} isMissionControl />
           </div>
 
           {/* Embedded Journeys */}
           <div data-section="embedded">
             <EmbeddedSection data={caseStudy.embeddedJourneys} accent={accent} themeColor={themeColor} />
+          </div>
+
+          {/* What Impact I Had */}
+          <div data-section="my-impact" className="bg-[#FAFAFA]">
+            <ImpactSection data={caseStudy.myImpact} accent={accent} themeColor={themeColor} logoSrc={caseStudy.hero.logo} />
           </div>
 
           {/* Partners & Impact */}

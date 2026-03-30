@@ -2,7 +2,7 @@ export interface CaseStudySection {
   id: string;
   title: string;
   shortTitle: string; // for TOC
-  type: "hero" | "text" | "diagram" | "table" | "slider" | "stats" | "marquee" | "competitive-grid";
+  type: "hero" | "text" | "diagram" | "table" | "slider" | "stats" | "marquee" | "competitive-grid" | "application-journey" | "impact-table";
 }
 
 export interface HeroData {
@@ -60,6 +60,33 @@ export interface PartnerLogo {
   logoSrc?: string; // if we have the actual logo
 }
 
+export interface ImpactRow {
+  area: string;
+  metrics: string;
+  achievedImpact: string;
+}
+
+export interface ImpactData {
+  heading: string;
+  badge?: string;
+  rows: ImpactRow[];
+}
+
+export interface ScreenData {
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+}
+
+export interface ScreenSection {
+  heading: string;
+  badge?: string;
+  description: string;
+  screens: ScreenData[];
+  compositionImage?: string; // full composition hero image for the section
+}
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -73,8 +100,10 @@ export interface CaseStudy {
   lendingModel: DiagramData;
   competitiveEdge: TextBlock;
   userFlows: { heading: string; badge?: string; description: string; slides: SliderImage[] };
-  dashboard: { heading: string; badge?: string; description: string; screens: { imageSrc: string; imageAlt: string; title: string; description: string }[] };
-  missionControl: { heading: string; badge?: string; description: string; screens: { imageSrc: string; imageAlt: string; title: string; description: string }[] };
-  embeddedJourneys: { heading: string; badge?: string; description: string; screens: { imageSrc: string; imageAlt: string; title: string; description: string }[] };
+  smeJourney: ScreenSection; // SME application journey screens
+  dashboard: ScreenSection;
+  missionControl: ScreenSection;
+  embeddedJourneys: ScreenSection;
+  myImpact: ImpactData;
   partnersImpact: { heading: string; partners: PartnerLogo[]; stats: StatItem[] };
 }

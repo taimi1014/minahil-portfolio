@@ -39,8 +39,8 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
     return blurPlaceholders[slug];
   }, [project.imageSrc]);
 
-  // Only link if this project has a case study
-  const hasCaseStudy = project.slug === "crediblex";
+  // Link if this project has a case study (custom or embedded)
+  const hasCaseStudy = ["crediblex", "tmc", "fams", "jetclass"].includes(project.slug);
 
   const card = (
       <motion.article
