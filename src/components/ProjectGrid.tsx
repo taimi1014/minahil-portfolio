@@ -50,7 +50,7 @@ export default function ProjectGrid({ themeColor }: ProjectGridProps) {
                   duration: 0.3,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="space-y-6"
+                className="space-y-10"
               >
                 {projects.map((project, index) => (
                   <ProjectCard

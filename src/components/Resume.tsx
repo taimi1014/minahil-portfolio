@@ -33,11 +33,11 @@ function Role({ title, company, period, projects, bullets, delay }: RoleProps) {
         </span>
       </div>
       {projects && projects.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-3 mt-1">
+        <div className="flex flex-wrap gap-2 mb-3 mt-2">
           {projects.map((p) => (
             <span
               key={p}
-              className="text-[11px] text-text-secondary bg-surface px-2.5 py-1 rounded-full"
+              className="text-[11px] font-medium text-text-primary bg-white px-2.5 py-[3px] rounded-full border border-[#E0E0E0] shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)]"
             >
               {p}
             </span>

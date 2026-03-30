@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 export const THEME_COLORS = [
@@ -54,10 +54,24 @@ export default function ThemeSwitcher({
   onPatternOpacityChange,
 }: ThemeSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const dotColor = THEME_COLORS.find(t => t.value === currentColor)?.dot || "#D0D0D0";
 
+  // Close on any click outside the color picker
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    // Use capture phase so we catch clicks before they're stopped
+    document.addEventListener("mousedown", handleClick, true);
+    return () => document.removeEventListener("mousedown", handleClick, true);
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       {/* Color trigger */}
       <button
         onClick={() => { haptic(); setIsOpen(!isOpen); }}
@@ -73,112 +87,98 @@ export default function ThemeSwitcher({
       {/* Color picker popup — opens DOWNWARD */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
+          <motion.div
+            className="absolute top-10 left-0 z-50 bg-white rounded-xl shadow-lg border border-border p-3 w-[260px]"
+            initial={{ opacity: 0, y: -6, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
+            {/* Color dots */}
+            <div className="flex gap-1.5 justify-start flex-wrap">
+              {THEME_COLORS.map((theme) => (
+                <button
+                  key={theme.name}
+                  onClick={() => { haptic(); onColorChange(theme.value); }}
+                  className="relative w-[19px] h-[19px] rounded-full transition-transform duration-150 hover:scale-125 active:scale-95 cursor-pointer"
+                  style={{ backgroundColor: theme.name === "Default" ? "#E8E8E8" : theme.dot }}
+                  title={theme.name}
+                >
+                  {currentColor === theme.value && (
+                    <motion.div
+                      layoutId="selectedDot"
+                      className="absolute inset-[-3px] rounded-full border-2 border-text-primary"
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
 
-            <motion.div
-              className="absolute top-10 left-0 z-50 bg-white rounded-xl shadow-lg border border-border p-3 w-[260px]"
-              initial={{ opacity: 0, y: -6, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -6, scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            >
-              {/* Color dots */}
-              <div className="flex gap-1.5 justify-start flex-wrap">
-                {THEME_COLORS.map((theme) => (
+            {/* Noise slider */}
+            <div className="mt-3 pt-3 border-t border-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] text-text-secondary">Texture</span>
+                <span className="text-[10px] text-text-tertiary tabular-nums">
+                  {Math.round(noiseLevel * 100)}%
+                </span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={noiseLevel}
+                onChange={(e) => onNoiseChange(parseFloat(e.target.value))}
+                className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                style={{
+                  background: `linear-gradient(to right, ${dotColor} ${noiseLevel * 100}%, #E5E5E5 ${noiseLevel * 100}%)`,
+                }}
+              />
+            </div>
+
+            {/* Pattern selector */}
+            <div className="mt-3 pt-3 border-t border-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] text-text-secondary">Pattern</span>
+                {pattern !== "none" && (
+                  <span className="text-[10px] text-text-tertiary tabular-nums">
+                    {Math.round(patternOpacity * 100)}%
+                  </span>
+                )}
+              </div>
+              <div className="grid grid-cols-4 gap-1.5">
+                {PATTERNS.map((p) => (
                   <button
-                    key={theme.name}
-                    onClick={() => { haptic(); onColorChange(theme.value); }}
-                    className="relative w-[19px] h-[19px] rounded-full transition-transform duration-150 hover:scale-125 active:scale-95 cursor-pointer"
-                    style={{ backgroundColor: theme.name === "Default" ? "#E8E8E8" : theme.dot }}
-                    title={theme.name}
+                    key={p.value}
+                    onClick={() => { haptic(); onPatternChange(p.value); }}
+                    className={`relative h-7 rounded-md border text-[9px] font-medium transition-all duration-150 cursor-pointer ${
+                      pattern === p.value
+                        ? "border-text-primary bg-surface text-text-primary"
+                        : "border-border text-text-tertiary hover:border-text-secondary/30"
+                    }`}
+                    title={p.name}
                   >
-                    {currentColor === theme.value && (
-                      <motion.div
-                        layoutId="selectedDot"
-                        className="absolute inset-[-3px] rounded-full border-2 border-text-primary"
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 25,
-                        }}
-                      />
-                    )}
+                    <PatternPreview type={p.value} active={pattern === p.value} />
                   </button>
                 ))}
               </div>
-
-              {/* Noise slider */}
-              <div className="mt-3 pt-3 border-t border-border">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] text-text-secondary">Texture</span>
-                  <span className="text-[10px] text-text-tertiary tabular-nums">
-                    {Math.round(noiseLevel * 100)}%
-                  </span>
-                </div>
+              {pattern !== "none" && (
                 <input
                   type="range"
-                  min="0"
+                  min="0.1"
                   max="1"
                   step="0.05"
-                  value={noiseLevel}
-                  onChange={(e) => onNoiseChange(parseFloat(e.target.value))}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                  value={patternOpacity}
+                  onChange={(e) => onPatternOpacityChange(parseFloat(e.target.value))}
+                  className="w-full h-2 rounded-full appearance-none cursor-pointer mt-2"
                   style={{
-                    background: `linear-gradient(to right, ${dotColor} ${noiseLevel * 100}%, #E5E5E5 ${noiseLevel * 100}%)`,
+                    background: `linear-gradient(to right, ${dotColor} ${patternOpacity * 100}%, #E5E5E5 ${patternOpacity * 100}%)`,
                   }}
                 />
-              </div>
-
-              {/* Pattern selector */}
-              <div className="mt-3 pt-3 border-t border-border">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] text-text-secondary">Pattern</span>
-                  {pattern !== "none" && (
-                    <span className="text-[10px] text-text-tertiary tabular-nums">
-                      {Math.round(patternOpacity * 100)}%
-                    </span>
-                  )}
-                </div>
-                <div className="grid grid-cols-4 gap-1.5">
-                  {PATTERNS.map((p) => (
-                    <button
-                      key={p.value}
-                      onClick={() => { haptic(); onPatternChange(p.value); }}
-                      className={`relative h-7 rounded-md border text-[9px] font-medium transition-all duration-150 cursor-pointer ${
-                        pattern === p.value
-                          ? "border-text-primary bg-surface text-text-primary"
-                          : "border-border text-text-tertiary hover:border-text-secondary/30"
-                      }`}
-                      title={p.name}
-                    >
-                      <PatternPreview type={p.value} active={pattern === p.value} />
-                    </button>
-                  ))}
-                </div>
-                {pattern !== "none" && (
-                  <input
-                    type="range"
-                    min="0.1"
-                    max="1"
-                    step="0.05"
-                    value={patternOpacity}
-                    onChange={(e) => onPatternOpacityChange(parseFloat(e.target.value))}
-                    className="w-full h-2 rounded-full appearance-none cursor-pointer mt-2"
-                    style={{
-                      background: `linear-gradient(to right, ${dotColor} ${patternOpacity * 100}%, #E5E5E5 ${patternOpacity * 100}%)`,
-                    }}
-                  />
-                )}
-              </div>
-            </motion.div>
-          </>
+              )}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
