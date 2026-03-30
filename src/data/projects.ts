@@ -3,42 +3,42 @@ import { Project } from "@/types";
 export const projects: Project[] = [
   {
     slug: "crediblex",
-    title: "AI-Enabled Credit Assessment Platform",
+    title: "CredibleX — AI-Powered Lending Platform",
     description:
-      "Led end-to-end design for CredibleX's lending platform — producing wireframes, interactive prototypes, and high-fidelity UI assets that contributed to a 17% increase in user engagement.",
+      "Led end-to-end design for a credit assessment platform — from wireframes to high-fidelity prototypes. Built intuitive loan management flows that contributed to a 17% increase in user engagement.",
     imageSrc: "/images/projects/tranxpay.webp",
     imageAlt: "CredibleX lending platform showing loan management and credit assessment interfaces",
   },
   {
-    slug: "voltro-tmc",
-    title: "TMC Trucking SaaS — Abu Dhabi Gov",
+    slug: "tmc",
+    title: "TMC — Trucking & Logistics SaaS",
     description:
-      "Designed the TMC Trucking SaaS platform from the ground up, covering user flows, personas, wireframes, and usability testing — resulting in a 40% reduction in operational bottlenecks.",
+      "Designed a government-scale trucking management system from scratch — covering user flows, personas, wireframes, and usability testing. Reduced operational bottlenecks by 40%.",
     imageSrc: "/images/projects/moodanalyzer.webp",
     imageAlt: "TMC Trucking SaaS platform dashboard with logistics management interface",
   },
   {
-    slug: "voltro-tadweer",
-    title: "Tadweer — BI Platform for Data Visibility",
+    slug: "fams",
+    title: "FAMS — Fixed Asset Management System",
     description:
-      "Led UX strategy for a BI platform handling complex data — enabled leadership to make faster decisions and reduced data risk exposure by 28% through structured data visibility.",
+      "Designed a comprehensive asset tracking and management platform — streamlining inventory workflows, audit trails, and depreciation reporting for enterprise-scale operations.",
     imageSrc: "/images/projects/revolut-aiops.webp",
-    imageAlt: "Tadweer BI platform with data analytics and reporting dashboards",
+    imageAlt: "FAMS asset management platform with inventory tracking and reporting dashboards",
   },
   {
-    slug: "logicon-onyx",
-    title: "OnyxNFT Marketplace Builder",
+    slug: "jetclass",
+    title: "Jet Class — Private Aviation Booking",
     description:
-      "Designed the OnyxNFT marketplace builder tool from scratch — developed flows for minting, storefront creation, smart contract integration, and asset trading. Improved user acquisition by 22.1%.",
+      "Crafted the end-to-end booking experience for a private jet charter platform — from flight search and seat selection to payment and itinerary management.",
     imageSrc: "/images/projects/mira-ai71.webp",
-    imageAlt: "OnyxNFT marketplace builder showing minting and storefront creation flows",
+    imageAlt: "Jet Class private aviation booking platform with flight selection interface",
   },
   {
-    slug: "programmers-force",
-    title: "Shufti Pro Design System",
+    slug: "qatar-mme",
+    title: "Qatar MME — Government Digital Services",
     description:
-      "Designed and launched the Shufti Pro Design System, improving visual consistency and reducing frontend development time by ~30% across teams. Increased overall system usability by 35%.",
+      "Led UX strategy for Qatar's Ministry of Municipality & Environment digital platform — simplifying complex government workflows into accessible citizen-facing services.",
     imageSrc: "/images/projects/desertcart.webp",
-    imageAlt: "Shufti Pro Design System components and identity verification interfaces",
+    imageAlt: "Qatar MME government services platform with citizen-facing digital workflows",
   },
 ];
