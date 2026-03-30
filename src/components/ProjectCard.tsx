@@ -42,11 +42,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
   // Only link if this project has a case study
   const hasCaseStudy = project.slug === "crediblex";
 
-  const Wrapper = hasCaseStudy ? Link : "div";
-  const wrapperProps = hasCaseStudy ? { href: `/projects/${project.slug}` } : {};
-
-  return (
-    <Wrapper {...wrapperProps as Record<string, unknown>}>
+  const card = (
       <motion.article
       ref={cardRef}
       className="group relative bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] max-w-[85%] lg:max-w-[72%] mx-auto border border-[#E8E8E8] cursor-none"
@@ -148,6 +144,10 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
         )}
       </div>
     </motion.article>
-    </Wrapper>
   );
+
+  if (hasCaseStudy) {
+    return <Link href={`/projects/${project.slug}`}>{card}</Link>;
+  }
+  return card;
 }

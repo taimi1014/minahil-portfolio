@@ -115,7 +115,7 @@ export default function CaseStudyPage() {
         {/* Right Content */}
         <div
           ref={contentRef}
-          className="flex-1 overflow-y-auto hide-scrollbar"
+          className="flex-1 overflow-y-auto hide-scrollbar case-study-content"
         >
           {/* Hero */}
           <div data-section="hero">
