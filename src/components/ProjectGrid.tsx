@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { projects } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import TabSwitcher from "./TabSwitcher";
-import Resume from "./Resume";
+
+const Resume = lazy(() => import("./Resume"));
 
 const TABS = ["Case Studies", "My Resume"];
 
@@ -71,7 +72,9 @@ export default function ProjectGrid({ themeColor }: ProjectGridProps) {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
               >
-                <Resume />
+                <Suspense fallback={<div className="animate-pulse h-96 bg-gray-100 rounded-xl" />}>
+                  <Resume />
+                </Suspense>
               </motion.div>
             )}
           </AnimatePresence>

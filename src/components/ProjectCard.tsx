@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Project } from "@/types";
 import { THEME_COLORS } from "./ThemeSwitcher";
+import { blurPlaceholders } from "@/data/placeholders";
 
 interface ProjectCardProps {
   project: Project;
@@ -15,6 +16,12 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index, themeColor }: ProjectCardProps) {
   const theme = useMemo(() => THEME_COLORS.find(t => t.value === themeColor), [themeColor]);
   const accent = theme?.accent || "#1A1A1A";
+
+  // Get blur placeholder from slug
+  const blurDataURL = useMemo(() => {
+    const slug = project.imageSrc.split("/").pop()?.replace(/\.\w+$/, "") || "";
+    return blurPlaceholders[slug];
+  }, [project.imageSrc]);
 
   return (
     <motion.article
@@ -34,8 +41,12 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
           src={project.imageSrc}
           alt={project.imageAlt}
           width={1200}
-          height={800}
+          height={675}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading={index < 2 ? "eager" : "lazy"}
+          placeholder={blurDataURL ? "blur" : "empty"}
+          blurDataURL={blurDataURL}
+          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 55vw, 600px"
         />
         {/* Accent color overlay on hover */}
         <div

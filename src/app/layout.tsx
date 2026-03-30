@@ -26,6 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical above-fold images */}
+        <link rel="preload" href="/images/profile.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/images/projects/tranxpay.webp" as="image" type="image/webp" />
+        {/* DNS prefetch for fonts */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className={`${inter.className} bg-white text-text-primary`}>
         {children}
       </body>

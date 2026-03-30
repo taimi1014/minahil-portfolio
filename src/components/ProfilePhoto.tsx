@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { blurPlaceholders } from "@/data/placeholders";
 
 export default function ProfilePhoto() {
   return (
@@ -12,12 +13,14 @@ export default function ProfilePhoto() {
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       <Image
-        src="/images/profile.jpg"
+        src="/images/profile.webp"
         alt="Minahil Awan"
         width={80}
         height={80}
         className="w-full h-full object-cover"
         priority
+        placeholder="blur"
+        blurDataURL={blurPlaceholders.profile}
       />
     </motion.div>
   );

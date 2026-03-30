@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "AI-Enabled Credit Assessment Platform",
     description:
       "Led end-to-end design for CredibleX's lending platform — producing wireframes, interactive prototypes, and high-fidelity UI assets that contributed to a 17% increase in user engagement.",
-    imageSrc: "/images/projects/tranxpay.png",
+    imageSrc: "/images/projects/tranxpay.webp",
     imageAlt: "CredibleX lending platform showing loan management and credit assessment interfaces",
   },
   {
@@ -14,7 +14,7 @@ export const projects: Project[] = [
     title: "TMC Trucking SaaS — Abu Dhabi Gov",
     description:
       "Designed the TMC Trucking SaaS platform from the ground up, covering user flows, personas, wireframes, and usability testing — resulting in a 40% reduction in operational bottlenecks.",
-    imageSrc: "/images/projects/moodanalyzer.png",
+    imageSrc: "/images/projects/moodanalyzer.webp",
     imageAlt: "TMC Trucking SaaS platform dashboard with logistics management interface",
   },
   {
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: "Tadweer — BI Platform for Data Visibility",
     description:
       "Led UX strategy for a BI platform handling complex data — enabled leadership to make faster decisions and reduced data risk exposure by 28% through structured data visibility.",
-    imageSrc: "/images/projects/revolut-aiops.png",
+    imageSrc: "/images/projects/revolut-aiops.webp",
     imageAlt: "Tadweer BI platform with data analytics and reporting dashboards",
   },
   {
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     title: "OnyxNFT Marketplace Builder",
     description:
       "Designed the OnyxNFT marketplace builder tool from scratch — developed flows for minting, storefront creation, smart contract integration, and asset trading. Improved user acquisition by 22.1%.",
-    imageSrc: "/images/projects/mira-ai71.png",
+    imageSrc: "/images/projects/mira-ai71.webp",
     imageAlt: "OnyxNFT marketplace builder showing minting and storefront creation flows",
   },
   {
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     title: "Shufti Pro Design System",
     description:
       "Designed and launched the Shufti Pro Design System, improving visual consistency and reducing frontend development time by ~30% across teams. Increased overall system usability by 35%.",
-    imageSrc: "/images/projects/desertcart.png",
+    imageSrc: "/images/projects/desertcart.webp",
     imageAlt: "Shufti Pro Design System components and identity verification interfaces",
   },
 ];
