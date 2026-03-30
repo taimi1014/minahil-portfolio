@@ -165,7 +165,7 @@ export default function TableOfContents({
               <span
                 className="font-mono tabular-nums flex-shrink-0"
                 style={{
-                  fontSize: "9px",
+                  fontSize: "11px",
                   color: isActive ? accent : `${accent}25`,
                   width: "16px",
                   textAlign: "left",
@@ -178,7 +178,7 @@ export default function TableOfContents({
               <div className="flex-1 text-left">
                 <motion.span
                   className="block truncate leading-tight"
-                  style={{ fontSize: "11px", textAlign: "left" }}
+                  style={{ fontSize: "14px", textAlign: "left" }}
                   animate={{
                     color: isActive ? accent : isPast ? `${accent}60` : "#aaa",
                     fontWeight: isActive ? 600 : 400,

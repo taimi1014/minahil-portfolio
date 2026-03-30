@@ -94,7 +94,7 @@ export default function CaseStudyPage() {
         className="fixed top-0 left-0 h-[3px] z-50 transition-all duration-75"
         style={{
           width: `${scrollProgress * 100}%`,
-          background: `linear-gradient(90deg, ${theme.gradientFrom || accent}, ${accent})`,
+          background: `linear-gradient(90deg, ${accent}80, ${accent})`,
         }}
       />
 

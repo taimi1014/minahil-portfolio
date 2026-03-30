@@ -17,7 +17,7 @@ export interface HeroData {
 export interface TextBlock {
   heading?: string;
   badge?: string; // small label above heading like "Problem Statement"
-  body: string;
+  body?: string;
   bullets?: { title: string; description: string }[];
   numberedItems?: { title: string; description: string }[];
 }
