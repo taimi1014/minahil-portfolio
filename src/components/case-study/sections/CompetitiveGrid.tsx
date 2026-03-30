@@ -28,20 +28,9 @@ export default function CompetitiveGrid({ edge, accent, themeColor }: Competitiv
         </motion.span>
       )}
 
-      {edge.heading && (
-        <motion.h2
-          className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-2"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          {edge.heading}
-        </motion.h2>
-      )}
-
       {edge.body && (
         <motion.p
-          className="text-[15px] text-[#666] mb-8 max-w-[600px]"
+          className="text-[17px] lg:text-[20px] text-[#555] mb-10 max-w-[800px] leading-relaxed"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -51,30 +40,22 @@ export default function CompetitiveGrid({ edge, accent, themeColor }: Competitiv
         </motion.p>
       )}
 
-      {/* 2-column grid of cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Simple numbered list — matches Figma prototype */}
+      <div className="space-y-8 max-w-[900px]">
         {edge.numberedItems?.map((item, i) => (
           <motion.div
             key={i}
-            className="p-5 rounded-xl border border-[#E8E8E8] bg-white hover:shadow-md transition-shadow"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.06, duration: 0.4 }}
-            whileHover={{ y: -2 }}
+            transition={{ delay: i * 0.05, duration: 0.4 }}
           >
-            <div className="flex items-start gap-3">
-              <span
-                className="text-[12px] font-bold flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: themeColor, color: accent }}
-              >
-                {i + 1}
-              </span>
-              <div>
-                <h3 className="font-semibold text-[14px] text-[#1A1A1A] mb-1">{item.title}</h3>
-                <p className="text-[13px] text-[#777] leading-relaxed">{item.description}</p>
-              </div>
-            </div>
+            <h3 className="text-[16px] lg:text-[18px] font-bold text-[#1A1A1A] mb-1">
+              {i + 1}. {item.title}:
+            </h3>
+            <p className="text-[14px] lg:text-[15px] text-[#555] leading-relaxed">
+              {item.description}
+            </p>
           </motion.div>
         ))}
       </div>

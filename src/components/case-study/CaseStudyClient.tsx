@@ -122,7 +122,7 @@ export default function CaseStudyPage() {
             <HeroSection hero={caseStudy.hero} accent={accent} />
           </div>
 
-          {/* Problem Statement + Key Facts (combined) */}
+          {/* Problem Statement + Key Facts */}
           <div data-section="problem" className="px-6 lg:px-16 py-16 lg:py-24">
             <TextSection
               badge={caseStudy.problemStatement.badge}
@@ -131,13 +131,29 @@ export default function CaseStudyPage() {
               themeColor={themeColor}
               isLargeQuote
             />
-            <div className="mt-12">
-              <TextSection
-                heading={caseStudy.problemChallenge.heading}
-                bullets={caseStudy.problemChallenge.bullets}
-                accent={accent}
-                themeColor={themeColor}
-              />
+            {/* Two-column: heading left, bullets right — matches Figma */}
+            <div className="mt-16 flex flex-col lg:flex-row gap-8 lg:gap-16">
+              <div className="lg:w-[280px] flex-shrink-0">
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] sticky top-8">
+                  {caseStudy.problemChallenge.heading}
+                </h2>
+              </div>
+              <div className="flex-1">
+                <div className="space-y-5">
+                  {caseStudy.problemChallenge.bullets?.map((item, i) => (
+                    <div key={i} className="flex gap-3 items-start">
+                      <div
+                        className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                        style={{ backgroundColor: accent }}
+                      />
+                      <div>
+                        <span className="font-semibold text-[#1A1A1A] text-[15px]">{item.title}: </span>
+                        <span className="text-[#666] text-[14px] leading-relaxed">{item.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -152,7 +168,11 @@ export default function CaseStudyPage() {
           </div>
 
           {/* Our Solution */}
-          <div data-section="solution" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div
+            data-section="solution"
+            className="px-6 lg:px-16 py-16 lg:py-24"
+            style={{ background: "linear-gradient(180deg, #EEF0FF 0%, #F8FAFF 100%)" }}
+          >
             <TextSection
               badge={caseStudy.solution.badge}
               heading={caseStudy.solution.heading}
