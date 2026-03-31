@@ -11,6 +11,15 @@ export const projects: Project[] = [
     tags: ["Fintech", "SaaS", "Mobile App"],
   },
   {
+    slug: "tranxpay",
+    title: "TranxPay — Mobile-First Banking Platform",
+    description:
+      "Designed the core banking experience for a cross-border payments app — building seamless money transfer flows, multi-currency wallets, and KYC onboarding that drove a 3x increase in transaction volume.",
+    imageSrc: "/images/projects/tranxpay.webp",
+    imageAlt: "TranxPay mobile banking app with cross-border payment and wallet interfaces",
+    tags: ["Fintech", "Mobile App", "Payments"],
+  },
+  {
     slug: "tmc",
     title: "TMC — Trucking & Logistics SaaS",
     description:

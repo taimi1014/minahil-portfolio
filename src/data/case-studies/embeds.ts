@@ -12,6 +12,12 @@ export const embedCaseStudies: EmbedCaseStudy[] = [
       "https://embed.figma.com/proto/PT3aCeTxp1ClJLES61V31F/Interview-Case-Studies--Copy-?node-id=2071-3703&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2070%3A2135&page-id=2001%3A1087&embed-host=share",
   },
   {
+    slug: "tranxpay",
+    title: "TranxPay — Mobile-First Banking Platform",
+    embedUrl:
+      "https://embed.figma.com/proto/PT3aCeTxp1ClJLES61V31F/Interview-Case-Studies--Copy-?node-id=1-45479&viewport=2133%2C6576%2C0.38&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=106%3A1973&page-id=0%3A1&embed-host=share",
+  },
+  {
     slug: "tmc",
     title: "TMC — Trucking & Logistics SaaS",
     embedUrl:
