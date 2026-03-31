@@ -23,7 +23,7 @@ export default function TabSwitcher({
   const border = theme?.border || "#9CA3AF";
 
   return (
-    <div className="inline-flex items-center gap-1 mb-3">
+    <div className="inline-flex items-center gap-1">
       {tabs.map((tab, index) => {
         const isActive = activeTab === index;
         return (

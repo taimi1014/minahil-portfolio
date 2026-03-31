@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { projects } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import TabSwitcher from "./TabSwitcher";
+import { THEME_COLORS } from "./ThemeSwitcher";
 
 const Resume = lazy(() => import("./Resume"));
 
@@ -16,16 +17,40 @@ interface ProjectGridProps {
 
 export default function ProjectGrid({ themeColor }: ProjectGridProps) {
   const [activeTab, setActiveTab] = useState(0);
+  const theme = useMemo(() => THEME_COLORS.find(t => t.value === themeColor), [themeColor]);
+  const accent = theme?.accent || "#1A1A1A";
 
   return (
     <>
-      {/* Tabs — directly above frosted glass box */}
-      <TabSwitcher
-        tabs={TABS}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        themeColor={themeColor}
-      />
+      {/* Tabs row — tabs left, download button right */}
+      <div className="flex items-center justify-between mb-3">
+        <TabSwitcher
+          tabs={TABS}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          themeColor={themeColor}
+        />
+        <a
+          href="/Minahil_Awan_Resume.pdf"
+          download
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            color: accent,
+            border: `1.5px solid ${accent}25`,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Resume
+        </a>
+      </div>
 
       {/* Frosted glass content box */}
       <div

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { ReactNode } from "react";
 
 const fadeIn = {
   initial: { opacity: 0, y: 16 },
@@ -12,7 +13,7 @@ interface RoleProps {
   company: string;
   period: string;
   projects?: string[];
-  bullets: string[];
+  bullets: ReactNode[];
   delay: number;
 }
 
@@ -73,6 +74,10 @@ function SkillCategory({
   );
 }
 
+const B = ({ children }: { children: ReactNode }) => (
+  <strong className="font-semibold text-text-primary">{children}</strong>
+);
+
 export default function Resume() {
   return (
     <div className="space-y-8">
@@ -85,13 +90,14 @@ export default function Resume() {
           Summary
         </h2>
         <p className="text-[13.5px] text-text-secondary leading-[1.7]">
-          Creative and results-driven Product Designer with 6+ years of
+          Creative and results-driven Product Designer with <B>7+ years</B> of
           experience shaping intuitive, high-impact experiences across AI, SaaS,
           fintech, identity-tech, and healthcare platforms. Expert at driving
           end-to-end design — from user research through visual design and
           prototyping — while collaborating seamlessly with cross-functional
           teams to launch products that delight users and support business
-          growth.
+          growth. Proven track record helping early-stage startups scale, secure
+          funding, and deliver measurable results.
         </p>
       </motion.section>
 
@@ -115,14 +121,39 @@ export default function Resume() {
                 "Website",
               ]}
               bullets={[
-                "Led end-to-end design for core borrower and lender experiences, producing wireframes, interactive prototypes, and high-fidelity UI assets — contributing to a 17% increase in user engagement across the platform.",
-                "Collaborated with product and engineering teams to design AI-enabled credit assessment features, ensuring explainability and trust in automated decisions.",
-                "Oversaw the design lifecycle for new credit and lending features, from ideation to final implementation — collaborated with developers to ensure 100% design-to-dev accuracy.",
-                "Standardized platform visuals and UX patterns by enforcing brand-consistent design systems, increasing design efficiency and reducing UI inconsistencies by over 40%.",
-                "Partnered with product managers to conduct usability tests and user feedback sessions, leading to a 12% increase in completion rates.",
-                "Introduced scalable design documentation and component libraries in Figma, cutting onboarding time for new designers by 50%.",
+                <>Led end-to-end design for core borrower and lender experiences, producing wireframes, interactive prototypes, and high-fidelity UI assets — contributing to a <B>17% increase in user engagement</B> across the platform.</>,
+                <>Collaborated with product and engineering teams to design AI-enabled credit assessment features, ensuring explainability and trust in automated decisions — laid the UX foundation for smart loan matching and fraud detection modules.</>,
+                <>Oversaw the design lifecycle for new credit and lending features, from ideation to final implementation — collaborated with developers to ensure <B>100% design-to-dev accuracy</B> and timely delivery.</>,
+                <>Standardized platform visuals and UX patterns by enforcing brand-consistent design systems, increasing design efficiency and <B>reducing UI inconsistencies by over 40%</B>.</>,
+                <>Partnered with product managers to conduct usability tests and user feedback sessions, leading to the optimization of the loan application process and a <B>12% increase in completion rates</B>.</>,
+                <>Introduced scalable design documentation and component libraries in Figma, <B>cutting onboarding time for new designers by 50%</B>.</>,
               ]}
               delay={0.2}
+            />
+          </div>
+
+          <div className="py-6">
+            <Role
+              title="Senior Product Designer"
+              company="TranxPay Fintech (Contract)"
+              period="Feb 2022 — Apr 2023"
+              projects={[
+                "Wallets",
+                "Fund Transfer",
+                "Fintech Ecosystem",
+                "Cheque Draft",
+                "KYC",
+                "QR Payments",
+                "Card Issuing",
+                "Payment Links",
+              ]}
+              bullets={[
+                <>Designed an AI-powered neo banking app with cash in/out, bill pay, bill split, QR payments, card issuing and freezing, savings and financial literacy tools — <B>improving user onboarding by 40%</B>.</>,
+                <>Built core fintech flows (B2B, B2C) including QR payments, card issuing, and comprehensive fund transfer experiences.</>,
+                <>Ran comprehensive user research and usability tests for a frictionless, data-informed payment experience.</>,
+                <>Enhanced financial literacy tools, driving a <B>5x increase in user engagement</B>.</>,
+              ]}
+              delay={0.25}
             />
           </div>
 
@@ -133,19 +164,19 @@ export default function Resume() {
               period="Mar 2022 — Apr 2024"
               projects={[
                 "TMC (Abu Dhabi Gov)",
-                "QATAR MM",
+                "QATAR MME",
                 "FAMS",
                 "Jetclass",
                 "Originals4fan",
               ]}
               bullets={[
-                "Designed TMC Trucking SaaS platform from the ground up, covering user flows, personas, wireframes, and usability testing — resulting in a 40% reduction in operational bottlenecks.",
-                "Led UX strategy for Tadweer, a BI platform handling complex data — enabled leadership to make faster decisions and reduced data risk exposure by 28%.",
-                "Conducted over 25 user interviews, UAT cycles, and AOI tests, directly influencing feature prioritization and increasing customer satisfaction by 18%.",
-                "Built validated prototypes for early-stage products like JetClass and Famz, helping teams secure stakeholder buy-in and save ~20% development rework.",
-                "Collaborated with developers to break complex features into shippable increments, resulting in 15% faster sprint velocity.",
+                <>Designed TMC Trucking SaaS platform from the ground up, covering user flows, personas, wireframes, and usability testing — resulting in a <B>40% reduction in operational bottlenecks</B> across logistics teams.</>,
+                <>Led UX strategy for Tadweer, a BI platform handling complex data — enabled leadership to make faster decisions and <B>reduced data risk exposure by 28%</B> through structured data visibility.</>,
+                <>Conducted over <B>25 user interviews</B>, UAT cycles, and AOI tests, directly influencing feature prioritization and <B>increasing customer satisfaction by 18%</B>.</>,
+                <>Built validated prototypes for early-stage products like JetClass and FAMS, helping teams secure stakeholder buy-in and <B>save ~20% development rework</B>.</>,
+                <>Collaborated with developers to break complex features into shippable increments, resulting in <B>15% faster sprint velocity</B> and improved design-dev alignment.</>,
               ]}
-              delay={0.25}
+              delay={0.3}
             />
           </div>
 
@@ -163,13 +194,13 @@ export default function Resume() {
                 "Legacy Suit",
               ]}
               bullets={[
-                "Designed the OnyxNFT marketplace builder tool from scratch — developed flows for minting, storefront creation, smart contract integration, and asset trading.",
-                "Supported company\u2019s fundraising efforts by delivering a polished MVP, helping close initial investor rounds.",
-                "Improved user acquisition by 22.1% through continuous iteration, A/B testing, and UX enhancements.",
-                "Architected scalable information structures for complex fintech tools like AxeHedge, reducing feature abandonment by over 25%.",
-                "Delivered custom UX solutions for external client projects including Escaba and LegacySuit.",
+                <>Designed the OnyxNFT marketplace builder tool from scratch — developed flows for minting, storefront creation, smart contract integration, and asset trading.</>,
+                <>Supported company's fundraising efforts by delivering a polished MVP, helping close initial investor rounds.</>,
+                <><B>Improved user acquisition by 22.1%</B> through continuous iteration, A/B testing, and UX enhancements.</>,
+                <>Architected scalable information structures for complex fintech tools like AxeHedge and marketplace experiences like Stage, <B>reducing feature abandonment by over 25%</B>.</>,
+                <>Delivered custom UX solutions for external client projects including Escaba and LegacySuit, helping extend product value into legal and B2C verticals.</>,
               ]}
-              delay={0.3}
+              delay={0.35}
             />
           </div>
 
@@ -185,13 +216,13 @@ export default function Resume() {
                 "GigsTimer",
               ]}
               bullets={[
-                "Designed and launched the Shufti Pro Design System, improving visual consistency and reducing frontend development time by ~30% across teams.",
-                "Led usability testing workshops and design sprints for web and mobile apps, increasing overall system usability by 35%.",
-                "Conducted user interviews, UAT, and AOI testing to validate features and reduce friction points across products.",
-                "Redesigned core information architecture across products, streamlining navigation and improving task success rates.",
-                "Created comprehensive UX artifacts including personas, empathy maps, customer journeys, and low-to-high fidelity prototypes.",
+                <>Designed and launched the Shufti Pro Design System, improving visual consistency and <B>reducing frontend development time by ~30%</B> across teams.</>,
+                <>Led usability testing workshops and design sprints for web and mobile apps, <B>increasing overall system usability by 35%</B> through iterative design improvements.</>,
+                <>Conducted user interviews, UAT, and AOI testing to validate features and reduce friction points across Shufti Pro, StaffTimer, Moody, and GigsTimer.</>,
+                <>Redesigned core information architecture across products, streamlining navigation and improving task success rates for end-users.</>,
+                <>Created comprehensive UX artifacts including personas, empathy maps, customer journeys, and low-to-high fidelity prototypes — ensuring solutions were user-centered and scalable.</>,
               ]}
-              delay={0.35}
+              delay={0.4}
             />
           </div>
         </div>
@@ -207,24 +238,24 @@ export default function Resume() {
         </h2>
         <div className="space-y-2.5">
           <SkillCategory
-            title="UX & UI Design"
-            skills="Wireframing, prototyping, interaction design, high-fidelity visuals"
+            title="AI & Human-Interaction Design"
+            skills="LLM interface design, agentic UX, AI-native product design, fallback & error states for AI systems"
           />
           <SkillCategory
             title="Research & Testing"
-            skills="Usability testing, A/B testing, heuristic evaluation, data analytics, competitive analysis, personas, user flows"
+            skills="Usability testing, onsite field research, A/B testing, heuristic evaluation, analytics (GA, Hotjar, Crazy Egg)"
           />
           <SkillCategory
-            title="Design Systems"
+            title="Design Systems & Strategy"
             skills="Scalable UI components, style guides, accessibility, iterative design"
           />
           <SkillCategory
-            title="Collaboration"
-            skills="Cross-functional teamwork, stakeholder engagement, team mentoring"
+            title="Enterprise & Government"
+            skills="Regulatory compliance UX, bilingual (AR/EN) design, accessibility, localization"
           />
           <SkillCategory
-            title="Presentation"
-            skills="Pitch decks, stakeholder presentations, design reviews"
+            title="Leadership"
+            skills="Cross-functional teams (up to 13 reports), stakeholder management, design mentoring"
           />
         </div>
       </motion.section>
