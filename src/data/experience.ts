@@ -3,6 +3,13 @@ import { ExperienceEntry } from "@/types";
 export const experience: ExperienceEntry[] = [
   {
     role: "Lead Product Designer",
+    company: "CNTXT",
+    companyUrl: undefined,
+    dateRange: "2025 — Now",
+    location: "Remote",
+  },
+  {
+    role: "Lead Product Designer",
     company: "CredibleX",
     companyUrl: undefined,
     dateRange: "2024 — Now",

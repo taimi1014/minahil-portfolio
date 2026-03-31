@@ -113,6 +113,25 @@ export default function Resume() {
           <div className="pb-6">
             <Role
               title="Lead Product Designer"
+              company="CNTXT (Contract)"
+              period="2025 — Present"
+              projects={[
+                "SuperChat.ai",
+                "Voice AI Platform",
+              ]}
+              bullets={[
+                <>Led product design for SuperChat.ai, a conversational AI platform — designing voice-first interaction patterns, multi-turn dialogue flows, and real-time transcription interfaces that <B>reduced agent handle time by 35%</B>.</>,
+                <>Shaped the Voice AI product end-to-end, from discovery research to high-fidelity prototypes — establishing the design language for voice-driven user experiences across <B>3 product surfaces</B>.</>,
+                <>Collaborated with ML engineers to design intuitive interfaces for complex AI outputs — making voice analytics, sentiment detection, and call insights accessible to non-technical users.</>,
+                <>Built and maintained a scalable component library for the AI product suite, ensuring consistency across voice, chat, and analytics surfaces — <B>cutting design-to-dev handoff time by 40%</B>.</>,
+              ]}
+              delay={0.2}
+            />
+          </div>
+
+          <div className="py-6">
+            <Role
+              title="Lead Product Designer"
               company="CredibleX"
               period="Apr 2024 — Present"
               projects={[
@@ -128,7 +147,7 @@ export default function Resume() {
                 <>Partnered with product managers to conduct usability tests and user feedback sessions, leading to the optimization of the loan application process and a <B>12% increase in completion rates</B>.</>,
                 <>Introduced scalable design documentation and component libraries in Figma, <B>cutting onboarding time for new designers by 50%</B>.</>,
               ]}
-              delay={0.2}
+              delay={0.25}
             />
           </div>
 
