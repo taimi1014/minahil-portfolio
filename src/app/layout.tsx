@@ -41,6 +41,9 @@ export default function RootLayout({
         {/* DNS prefetch for fonts */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect Figma embeds for faster case study loads */}
+        <link rel="preconnect" href="https://embed.figma.com" />
+        <link rel="dns-prefetch" href="https://embed.figma.com" />
       </head>
       <body className={`${inter.variable} ${ibmSerif.variable} ${inter.className} bg-white text-text-primary`}>
         {children}

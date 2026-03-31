@@ -45,7 +45,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
   const card = (
       <motion.article
       ref={cardRef}
-      className="group relative bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] max-w-[85%] lg:max-w-[72%] mx-auto border border-[#E8E8E8] cursor-none"
+      className={`group relative bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] max-w-[85%] lg:max-w-[72%] mx-auto border border-[#E8E8E8] ${hasCaseStudy ? "cursor-none" : "cursor-default"}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -58,7 +58,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Custom cursor — filled accent pill that follows mouse */}
+      {/* Custom cursor — filled pill that follows mouse */}
       <motion.div
         className="pointer-events-none absolute z-40 flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] font-semibold tracking-wide whitespace-nowrap"
         style={{
@@ -66,19 +66,27 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
           y: springY,
           translateX: "-50%",
           translateY: "-50%",
-          backgroundColor: accent,
+          backgroundColor: hasCaseStudy ? accent : "#888",
           color: "#fff",
-          boxShadow: `0 4px 20px ${accent}40, 0 2px 8px rgba(0,0,0,0.15)`,
+          boxShadow: hasCaseStudy
+            ? `0 4px 20px ${accent}40, 0 2px 8px rgba(0,0,0,0.15)`
+            : "0 4px 16px rgba(0,0,0,0.12)",
           opacity: isHovered ? 1 : 0,
           scale: isHovered ? 1 : 0.5,
           transition: "opacity 0.2s, scale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
         }}
       >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7" />
-          <polyline points="7 7 17 7 17 17" />
-        </svg>
-        View Project
+        {hasCaseStudy ? (
+          <>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+            View Project
+          </>
+        ) : (
+          "Coming Soon"
+        )}
       </motion.div>
 
       {/* Image container with overlay and tags */}
@@ -95,11 +103,13 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
           sizes="(max-width: 768px) 90vw, (max-width: 1200px) 55vw, 600px"
         />
 
-        {/* Theme-colored overlay on hover */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"
-          style={{ backgroundColor: `${themeColor}cc` }}
-        />
+        {/* Theme-colored overlay on hover — only for clickable cards */}
+        {hasCaseStudy && (
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"
+            style={{ backgroundColor: `${themeColor}cc` }}
+          />
+        )}
 
         {/* Tags — always visible on top-left of image in accent color */}
         {project.tags && project.tags.length > 0 && (

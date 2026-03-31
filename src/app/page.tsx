@@ -136,6 +136,7 @@ export default function Home() {
           <ProjectGrid themeColor={themeColor} />
         </div>
       </div>
+
     </div>
   );
 }
