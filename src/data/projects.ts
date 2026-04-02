@@ -2,6 +2,15 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "supercenter",
+    title: "SuperCenter — AI-Powered Customer Experience Hub",
+    description:
+      "Designing the command center for AI-driven customer interactions — unifying voice, chat, and analytics into a single intelligent workspace that empowers support teams to resolve issues faster.",
+    imageSrc: "/images/projects/supercenter.webp",
+    imageAlt: "SuperCenter AI customer experience platform with voice and chat analytics dashboard",
+    tags: ["AI", "Voice", "SaaS"],
+  },
+  {
     slug: "crediblex",
     title: "CredibleX — AI-Powered Lending Platform",
     description:
