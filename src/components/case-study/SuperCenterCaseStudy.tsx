@@ -13,12 +13,12 @@ import ScreenGallery from "@/components/case-study/sections/ScreenGallery";
 const SECTIONS = [
   { id: "hero", title: "Hero", shortTitle: "Hero", type: "hero" as const },
   { id: "snapshot", title: "Quick Snapshot", shortTitle: "Snapshot", type: "text" as const },
+  { id: "role", title: "My Role", shortTitle: "Role", type: "text" as const },
   { id: "challenge", title: "The Challenge", shortTitle: "Challenge", type: "text" as const },
   { id: "goal", title: "The Goal", shortTitle: "Goal", type: "text" as const },
   { id: "research", title: "Research & Discovery", shortTitle: "Research", type: "text" as const },
   { id: "interviews", title: "User Interviews", shortTitle: "Interviews", type: "text" as const },
   { id: "didnt-work", title: "What Didn't Work", shortTitle: "Pivots", type: "text" as const },
-  { id: "role", title: "My Role", shortTitle: "Role", type: "text" as const },
   { id: "vision", title: "Product Vision", shortTitle: "Vision", type: "text" as const },
   { id: "principles", title: "Design Principles", shortTitle: "Principles", type: "text" as const },
   { id: "solution", title: "What I Designed", shortTitle: "Solution", type: "text" as const },
@@ -239,6 +239,27 @@ export default function SuperCenterCaseStudy() {
           {/* ═══ 2. QUICK SNAPSHOT ═══ */}
           <div data-section="snapshot" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <QuickSnapshot badge="At a glance" body="SuperCenter brings together the core systems needed to run Voice AI in production: agent creation, voice selection and cloning, knowledge management, conversational pathways, telephony, batch calling, analytics, call review, and billing. Instead of treating these as separate tools, the product connects them into one operational workflow." infoBlocks={[{ label: "Role", value: "Product Designer" }, { label: "Platform", value: "Web app" }, { label: "Scope", value: "Agent builder, model settings, knowledge base, voice library, pathways, phone numbers, batches, analytics, call logs, billing" }]} accent={accent} />
+          </div>
+
+          {/* ═══ MY ROLE ═══ */}
+          <div data-section="role" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
+            <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+              What I owned
+            </motion.span>
+            <motion.h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-4" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              End-to-end product design across the core platform
+            </motion.h2>
+            <motion.p className="text-[15px] text-[#555] leading-[1.75] mb-8 max-w-[640px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }}>
+              My focus was turning a dense technical product into a guided, modular, and scalable system.
+            </motion.p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {["Agent creation", "Model config", "Knowledge base", "Voice library", "Pathways", "Phone numbers", "Batch calling", "Analytics", "Call logs", "Billing"].map((area, i) => (
+                <motion.div key={area} className="rounded-lg border border-[#E0E0E0] bg-white px-3 py-2.5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.03)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.04 }}>
+                  <p className="text-[12px] font-medium text-[#444]">{area}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* ═══ 3. THE CHALLENGE — Split layout: text left, image right ═══ */}
@@ -476,26 +497,6 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 6. MY ROLE — Visual list with accent markers ═══ */}
-          <div data-section="role" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
-            <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-              What I owned
-            </motion.span>
-            <motion.h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-4" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              End-to-end product design across the core platform
-            </motion.h2>
-            <motion.p className="text-[15px] text-[#555] leading-[1.75] mb-8 max-w-[640px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }}>
-              My focus was turning a dense technical product into a guided, modular, and scalable system.
-            </motion.p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {["Agent creation", "Model config", "Knowledge base", "Voice library", "Pathways", "Phone numbers", "Batch calling", "Analytics", "Call logs", "Billing"].map((area, i) => (
-                <motion.div key={area} className="rounded-lg border border-[#E0E0E0] bg-white px-3 py-2.5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.03)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.04 }}>
-                  <p className="text-[12px] font-medium text-[#444]">{area}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
           {/* ═══ 7. PRODUCT VISION — Large quote style ═══ */}
           <div data-section="vision" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -509,26 +510,28 @@ export default function SuperCenterCaseStudy() {
               That shift — from isolated setup screens to one operational layer — is what gives the product its value.
             </motion.p>
 
-            {/* Animated lifecycle flow */}
-            <div className="flex flex-wrap gap-3 justify-center">
+            {/* Animated lifecycle flow — compact pills with SVG icons */}
+            <div className="flex flex-wrap gap-2.5">
               {[
-                { step: "Create", icon: "+" },
-                { step: "Configure", icon: "\u2699" },
-                { step: "Train", icon: "\u{1F4DA}" },
-                { step: "Voice", icon: "\u{1F3A4}" },
-                { step: "Connect", icon: "\u{1F4DE}" },
-                { step: "Launch", icon: "\u{1F680}" },
-                { step: "Monitor", icon: "\u{1F4CA}" },
-                { step: "Optimize", icon: "\u21BB" },
+                { step: "Create", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> },
+                { step: "Configure", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.circle cx="12" cy="12" r="3" initial={{ rotate: 0 }} whileInView={{ rotate: 360 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 1 }} /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> },
+                { step: "Train", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }} /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> },
+                { step: "Voice", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.rect x="9" y="2" width="6" height="11" rx="3" initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ delay: 0.3, type: "spring" }} style={{ transformOrigin: "bottom" }} /><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg> },
+                { step: "Connect", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> },
+                { step: "Launch", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.path d="M5 12l-2 0 9-9 9 9-2 0" initial={{ y: 4, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.6, type: "spring" }} /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> },
+                { step: "Monitor", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.polyline points="22,12 18,12 15,21 9,3 6,12 2,12" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.8 }} /></svg> },
+                { step: "Optimize", icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><motion.polyline points="23 6 13.5 15.5 8.5 10.5 1 18" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.6 }} /><polyline points="17 6 23 6 23 12"/></svg> },
               ].map((item, i) => (
-                <motion.div key={i} className="flex items-center gap-2" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.06 }}>
-                  <div className="flex items-center gap-2 rounded-full border border-[#E0E0E0] bg-white px-4 py-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
-                    <span className="text-[16px]">{item.icon}</span>
-                    <span className="text-[13px] font-medium text-[#333]">{item.step}</span>
+                <motion.div key={i} className="flex items-center gap-2" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.05, type: "spring", stiffness: 300, damping: 20 }}>
+                  <div className="group/pill flex items-center gap-1.5 rounded-full border border-[#E0E0E0] bg-white pl-2.5 pr-3.5 py-1.5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-shadow cursor-default">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 group-hover/pill:scale-125 group-hover/pill:rotate-12" style={{ backgroundColor: `${accent}10`, color: accent }}>
+                      {item.icon}
+                    </div>
+                    <span className="text-[12px] font-medium text-[#333]">{item.step}</span>
                   </div>
                   {i < 7 && (
-                    <motion.svg width="20" height="10" viewBox="0 0 20 10" className="text-[#CCC] hidden sm:block" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.06 }}>
-                      <path d="M0 5 L14 5 M10 1 L14 5 L10 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                    <motion.svg width="16" height="8" viewBox="0 0 16 8" className="text-[#CCC] hidden sm:block flex-shrink-0" initial={{ opacity: 0, x: -4 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.05 }}>
+                      <path d="M0 4 L10 4 M8 1 L12 4 L8 7" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     </motion.svg>
                   )}
                 </motion.div>
@@ -630,7 +633,7 @@ export default function SuperCenterCaseStudy() {
             </motion.p>
           </div>
 
-          {/* ═══ 11. OUTCOME — Visual metrics cards ═══ */}
+          {/* ═══ 11. OUTCOME — Grid with dividers ═══ */}
           <div data-section="outcome" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Outcome
@@ -642,16 +645,42 @@ export default function SuperCenterCaseStudy() {
               SuperCenter reframes Voice AI from disconnected controls into a clear operational product workflow — giving teams the confidence to move from prototype to production inside a single product.
             </motion.p>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {OUTCOME_METRICS.map((metric, i) => (
-                <motion.div key={i} className="rounded-xl border border-[#E0E0E0] bg-white px-5 py-5 shadow-[0_1px_6px_rgba(0,0,0,0.04)] text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}>
-                  <div className="flex justify-center mb-3"><AnimatedIcon type={metric.icon} accent={accent} /></div>
-                  <p className="text-[22px] font-bold mb-1" style={{ color: accent }}>{metric.value}</p>
-                  <p className="text-[13px] font-semibold text-[#1A1A1A] mb-1">{metric.label}</p>
-                  <p className="text-[12px] text-[#888] leading-snug">{metric.description}</p>
-                </motion.div>
-              ))}
-            </div>
+            {/* 2x3 grid with divider lines — no card borders */}
+            <motion.div className="rounded-2xl border border-[#E8E8E8] bg-white overflow-hidden" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-[#F0F0F0]">
+                {[
+                  { title: "Unified workflow", desc: "10+ core modules connected into one operational flow — from agent creation to billing" },
+                  { title: "Self-serve setup", desc: "Non-technical teams can configure and launch agents without engineering dependencies" },
+                  { title: "Full lifecycle coverage", desc: "Build, test, deploy, monitor, and optimize — all inside one platform" },
+                ].map((item, i) => (
+                  <motion.div key={i} className="px-6 py-7" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.06 }}>
+                    <h3 className="text-[16px] font-semibold text-[#1A1A1A] mb-2">{item.title}</h3>
+                    <p className="text-[13px] text-[#777] leading-[1.65]">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Horizontal divider with diamond accents */}
+              <div className="relative border-t border-[#F0F0F0]">
+                <div className="absolute top-0 left-1/3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rotate-45 border border-[#E0E0E0] bg-white" />
+                <div className="absolute top-0 left-2/3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rotate-45 border border-[#E0E0E0] bg-white" />
+              </div>
+
+              {/* Row 2 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-[#F0F0F0]">
+                {[
+                  { title: "Voice as a product surface", desc: "Voice browsing, design, upload, and cloning elevated into a dedicated creative workflow" },
+                  { title: "Knowledge with confidence", desc: "Playground testing lets teams validate retrieval before any agent goes live" },
+                  { title: "Operational visibility", desc: "Analytics, call logs, and billing built as first-class surfaces — not afterthoughts" },
+                ].map((item, i) => (
+                  <motion.div key={i} className="px-6 py-7" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 + i * 0.06 }}>
+                    <h3 className="text-[16px] font-semibold text-[#1A1A1A] mb-2">{item.title}</h3>
+                    <p className="text-[13px] text-[#777] leading-[1.65]">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
@@ -716,20 +745,57 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
-          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "500px" }}>
-            {/* Large "Thank you" text with stroke outline — parallax */}
-            <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-8">
+          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "520px" }}>
+            {/* Animated blurred blob — large, visible, with trail effect */}
+            <motion.div
+              className="absolute pointer-events-none"
+              style={{ width: "500px", height: "350px", borderRadius: "40% 60% 55% 45% / 55% 40% 60% 45%", background: "radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 70%)", filter: "blur(40px)", top: "10%", left: "5%" }}
+              animate={{
+                x: [0, 200, 350, 250, 100, 0],
+                y: [0, -30, 40, 80, 20, 0],
+                rotate: [0, 15, -10, 20, -5, 0],
+                scale: [1, 1.2, 0.9, 1.3, 1.1, 1],
+                borderRadius: ["40% 60% 55% 45% / 55% 40% 60% 45%", "55% 45% 40% 60% / 45% 55% 45% 55%", "45% 55% 60% 40% / 60% 45% 55% 45%", "50% 50% 45% 55% / 40% 60% 50% 50%", "60% 40% 50% 50% / 50% 50% 40% 60%", "40% 60% 55% 45% / 55% 40% 60% 45%"],
+              }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            />
+            {/* Trail blob — follows slightly behind */}
+            <motion.div
+              className="absolute pointer-events-none"
+              style={{ width: "350px", height: "250px", borderRadius: "50% 50% 40% 60% / 60% 40% 60% 40%", background: "radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, transparent 70%)", filter: "blur(50px)", top: "15%", left: "10%" }}
+              animate={{
+                x: [0, 180, 320, 220, 80, 0],
+                y: [0, -20, 50, 90, 30, 0],
+                rotate: [0, -10, 15, -15, 10, 0],
+                scale: [0.8, 1, 1.1, 0.9, 1.05, 0.8],
+              }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            />
+            {/* Secondary accent blob — bottom right */}
+            <motion.div
+              className="absolute pointer-events-none"
+              style={{ width: "300px", height: "220px", borderRadius: "60% 40% 45% 55% / 45% 55% 50% 50%", background: `radial-gradient(ellipse, ${accent}18, ${accent}06, transparent)`, filter: "blur(50px)", bottom: "5%", right: "5%" }}
+              animate={{
+                x: [0, -100, -60, -140, -30, 0],
+                y: [0, 20, -30, 10, -15, 0],
+                scale: [1, 1.15, 1.3, 1, 1.2, 1],
+              }}
+              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            />
+
+            {/* Large "Thank you" text — parallax scroll effect */}
+            <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
               <motion.h2
-                className="text-[100px] lg:text-[180px] xl:text-[240px] font-bold select-none leading-none"
+                className="text-[100px] lg:text-[180px] xl:text-[240px] font-bold select-none leading-none whitespace-nowrap"
                 style={{
                   color: "transparent",
-                  WebkitTextStroke: "1px rgba(255,255,255,0.06)",
-                  letterSpacing: "-0.02em",
+                  WebkitTextStroke: "1px rgba(255,255,255,0.05)",
+                  letterSpacing: "-0.03em",
                 }}
-                initial={{ y: 80, opacity: 0 }}
+                initial={{ y: 100, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 Thank you
               </motion.h2>
