@@ -133,7 +133,7 @@ export default function Resume() {
             <Role
               title="Lead Product Designer"
               company="CredibleX"
-              period="Apr 2024 — Present"
+              period="2023 — Present"
               projects={[
                 "Loan Management Admin Portal",
                 "Credit Mission Control Web App",
@@ -155,7 +155,7 @@ export default function Resume() {
             <Role
               title="Senior Product Designer"
               company="TranxPay Fintech (Contract)"
-              period="Feb 2022 — Apr 2023"
+              period="2022 — 2023"
               projects={[
                 "Wallets",
                 "Fund Transfer",
@@ -180,7 +180,7 @@ export default function Resume() {
             <Role
               title="Senior Product Designer"
               company="Voltro by Falkenherz"
-              period="Mar 2022 — Apr 2024"
+              period="2021 — 2023"
               projects={[
                 "TMC (Abu Dhabi Gov)",
                 "QATAR MME",
@@ -203,7 +203,7 @@ export default function Resume() {
             <Role
               title="Product Designer"
               company="Logicon"
-              period="Jun 2019 — Mar 2022"
+              period="2019 — 2021"
               projects={[
                 "Onyx NFT",
                 "AxeHedge",
@@ -227,7 +227,7 @@ export default function Resume() {
             <Role
               title="UI/UX Designer"
               company="Programmers Force"
-              period="Jan 2018 — May 2019"
+              period="2018 — 2019"
               projects={[
                 "Shufti Pro",
                 "StaffTimer",
