@@ -9,7 +9,7 @@ import TableOfContents from "@/components/case-study/TableOfContents";
 import QuickSnapshot from "@/components/case-study/sections/QuickSnapshot";
 import DesignPrinciples from "@/components/case-study/sections/DesignPrinciples";
 import ScreenGallery from "@/components/case-study/sections/ScreenGallery";
-import AnimatedBlob from "@/components/case-study/AnimatedBlob";
+import { ShaderGradient } from "@/components/case-study/ShaderGradient";
 
 const SECTIONS = [
   { id: "hero", title: "Hero", shortTitle: "Hero", type: "hero" as const },
@@ -686,12 +686,8 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
-            {/* Hero bg + canvas blob overlay */}
-            <div className="absolute inset-0">
-              <Image src={`${IMG}/hero-bg.webp`} alt="" fill className="object-cover" sizes="100vw" />
-              <div className="absolute inset-0 bg-black/5" />
-              <AnimatedBlob color="255,255,255" opacity={0.1} speed={0.002} />
-            </div>
+            {/* HueGrid aurora gradient */}
+            <ShaderGradient className="absolute inset-0" />
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
               <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-8 border border-white/20 text-white/70 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -745,9 +741,9 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
-          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "520px" }}>
-            {/* Canvas-based animated organic blobs */}
-            <AnimatedBlob color="255,255,255" opacity={0.15} speed={0.003} />
+          <div className="relative overflow-hidden" style={{ minHeight: "520px" }}>
+            {/* Dark aurora gradient in footer */}
+            <ShaderGradient variant="footer" className="absolute inset-0" />
 
             {/* Large "Thank you" text — parallax scroll effect */}
             <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
