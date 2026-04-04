@@ -26,14 +26,14 @@ export const experience: ExperienceEntry[] = [
     role: "Product Designer",
     company: "Logicon",
     companyUrl: undefined,
-    dateRange: "2021 — 2022",
+    dateRange: "2019 — 2022",
     location: "Remote",
   },
   {
     role: "UI/UX Designer",
     company: "Programmers Force",
     companyUrl: undefined,
-    dateRange: "2020 — 2021",
+    dateRange: "2018 — 2019",
     location: "Lahore , Pakistan",
   },
 ];

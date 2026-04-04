@@ -203,7 +203,7 @@ export default function Resume() {
             <Role
               title="Product Designer"
               company="Logicon"
-              period="Mar 2021 — Mar 2022"
+              period="Jun 2019 — Mar 2022"
               projects={[
                 "Onyx NFT",
                 "AxeHedge",
@@ -227,7 +227,7 @@ export default function Resume() {
             <Role
               title="UI/UX Designer"
               company="Programmers Force"
-              period="Mar 2020 — Mar 2021"
+              period="Jan 2018 — May 2019"
               projects={[
                 "Shufti Pro",
                 "StaffTimer",
@@ -294,7 +294,7 @@ export default function Resume() {
             </p>
             <p className="text-[13px] text-text-secondary">ITU, University</p>
           </div>
-          <span className="text-[12px] text-text-tertiary">2016 — 2020</span>
+          <span className="text-[12px] text-text-tertiary">2014 — 2018</span>
         </div>
       </motion.section>
     </div>
