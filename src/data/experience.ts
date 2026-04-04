@@ -12,7 +12,7 @@ export const experience: ExperienceEntry[] = [
     role: "Lead Product Designer",
     company: "CredibleX",
     companyUrl: undefined,
-    dateRange: "2023 — Now",
+    dateRange: "2023 — 2026",
     location: "Abu Dhabi , United Arab Emirates",
   },
   {

@@ -133,7 +133,7 @@ export default function Resume() {
             <Role
               title="Lead Product Designer"
               company="CredibleX"
-              period="2023 — Present"
+              period="2023 — 2026"
               projects={[
                 "Loan Management Admin Portal",
                 "Credit Mission Control Web App",
