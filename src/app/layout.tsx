@@ -35,6 +35,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Animated sunflower favicon */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {/* Preload critical above-fold images */}
         <link rel="preload" href="/images/profile.webp" as="image" type="image/webp" />
         <link rel="preload" href="/images/projects/crediblex.webp" as="image" type="image/webp" />
