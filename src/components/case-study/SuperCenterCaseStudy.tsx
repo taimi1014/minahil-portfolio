@@ -9,6 +9,7 @@ import TableOfContents from "@/components/case-study/TableOfContents";
 import QuickSnapshot from "@/components/case-study/sections/QuickSnapshot";
 import DesignPrinciples from "@/components/case-study/sections/DesignPrinciples";
 import ScreenGallery from "@/components/case-study/sections/ScreenGallery";
+import AnimatedBlob from "@/components/case-study/AnimatedBlob";
 
 const SECTIONS = [
   { id: "hero", title: "Hero", shortTitle: "Hero", type: "hero" as const },
@@ -685,12 +686,11 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
-            {/* Smooth animated gradient — subtle, premium */}
+            {/* Hero bg + canvas blob overlay */}
             <div className="absolute inset-0">
               <Image src={`${IMG}/hero-bg.webp`} alt="" fill className="object-cover" sizes="100vw" />
-              <div className="absolute inset-0 bg-black/10" />
-              {/* Soft animated overlay blob */}
-              <motion.div className="absolute w-[600px] h-[600px] rounded-full blur-[160px]" style={{ background: "rgba(255,255,255,0.08)", top: "10%", left: "20%" }} animate={{ x: [0, 40, 0], y: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
+              <div className="absolute inset-0 bg-black/5" />
+              <AnimatedBlob color="255,255,255" opacity={0.1} speed={0.002} />
             </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
@@ -746,42 +746,8 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
           <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "520px" }}>
-            {/* Animated blurred blob — large, visible, with trail effect */}
-            <motion.div
-              className="absolute pointer-events-none"
-              style={{ width: "500px", height: "350px", borderRadius: "40% 60% 55% 45% / 55% 40% 60% 45%", background: "radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 70%)", filter: "blur(40px)", top: "10%", left: "5%" }}
-              animate={{
-                x: [0, 200, 350, 250, 100, 0],
-                y: [0, -30, 40, 80, 20, 0],
-                rotate: [0, 15, -10, 20, -5, 0],
-                scale: [1, 1.2, 0.9, 1.3, 1.1, 1],
-                borderRadius: ["40% 60% 55% 45% / 55% 40% 60% 45%", "55% 45% 40% 60% / 45% 55% 45% 55%", "45% 55% 60% 40% / 60% 45% 55% 45%", "50% 50% 45% 55% / 40% 60% 50% 50%", "60% 40% 50% 50% / 50% 50% 40% 60%", "40% 60% 55% 45% / 55% 40% 60% 45%"],
-              }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            />
-            {/* Trail blob — follows slightly behind */}
-            <motion.div
-              className="absolute pointer-events-none"
-              style={{ width: "350px", height: "250px", borderRadius: "50% 50% 40% 60% / 60% 40% 60% 40%", background: "radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, transparent 70%)", filter: "blur(50px)", top: "15%", left: "10%" }}
-              animate={{
-                x: [0, 180, 320, 220, 80, 0],
-                y: [0, -20, 50, 90, 30, 0],
-                rotate: [0, -10, 15, -15, 10, 0],
-                scale: [0.8, 1, 1.1, 0.9, 1.05, 0.8],
-              }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            />
-            {/* Secondary accent blob — bottom right */}
-            <motion.div
-              className="absolute pointer-events-none"
-              style={{ width: "300px", height: "220px", borderRadius: "60% 40% 45% 55% / 45% 55% 50% 50%", background: `radial-gradient(ellipse, ${accent}18, ${accent}06, transparent)`, filter: "blur(50px)", bottom: "5%", right: "5%" }}
-              animate={{
-                x: [0, -100, -60, -140, -30, 0],
-                y: [0, 20, -30, 10, -15, 0],
-                scale: [1, 1.15, 1.3, 1, 1.2, 1],
-              }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-            />
+            {/* Canvas-based animated organic blobs */}
+            <AnimatedBlob color="255,255,255" opacity={0.15} speed={0.003} />
 
             {/* Large "Thank you" text — parallax scroll effect */}
             <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
