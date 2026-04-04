@@ -40,7 +40,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
   }, [project.imageSrc]);
 
   // Link if this project has a case study (custom or embedded)
-  const hasCaseStudy = ["crediblex", "tranxpay", "tmc", "fams", "jetclass"].includes(project.slug);
+  const hasCaseStudy = ["supercenter", "crediblex", "tranxpay", "tmc", "fams", "jetclass"].includes(project.slug);
 
   const card = (
       <motion.article
