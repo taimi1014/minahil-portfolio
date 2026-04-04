@@ -632,36 +632,62 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
-            {/* Animated mesh gradient background — visible and dynamic */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, #F4F0FF, #EDE8FF, #F0EAFF)" }}>
-              {/* Blob 1 — top left, accent color */}
-              <motion.div className="absolute w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: `${accent}30`, top: "-10%", left: "-5%" }} animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
-              {/* Blob 2 — center right, purple */}
-              <motion.div className="absolute w-[400px] h-[400px] rounded-full blur-[100px]" style={{ background: "#8B5CF640", top: "20%", right: "-5%" }} animate={{ x: [0, -50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
-              {/* Blob 3 — bottom center, blue */}
-              <motion.div className="absolute w-[350px] h-[350px] rounded-full blur-[100px]" style={{ background: "#3B82F620", bottom: "-10%", left: "30%" }} animate={{ x: [0, 40, 0], y: [0, -25, 0], scale: [1.1, 1, 1.1] }} transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 4 }} />
+            {/* Vibrant animated mesh gradient — matches hero energy */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #7C3AED, #9333EA, #6D28D9)" }}>
+              {/* Blob 1 — large pink/magenta */}
+              <motion.div className="absolute w-[600px] h-[600px] rounded-full blur-[140px]" style={{ background: "#EC4899", opacity: 0.4, top: "-20%", left: "-10%" }} animate={{ x: [0, 80, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+              {/* Blob 2 — blue accent */}
+              <motion.div className="absolute w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: "#3B82F6", opacity: 0.35, top: "10%", right: "-15%" }} animate={{ x: [0, -60, 0], y: [0, -40, 0], scale: [1, 1.25, 1] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} />
+              {/* Blob 3 — warm purple */}
+              <motion.div className="absolute w-[450px] h-[450px] rounded-full blur-[130px]" style={{ background: "#A855F7", opacity: 0.5, bottom: "-15%", left: "25%" }} animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1.1, 0.95, 1.1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }} />
             </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
-              <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-8" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+              <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-8 border border-white/20 text-white/70 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
                 Reflection
               </motion.span>
 
-              {/* Giant open quote mark */}
-              <motion.span className="text-[120px] lg:text-[180px] font-serif leading-none select-none -mb-12 lg:-mb-16" style={{ color: `${accent}15` }} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.6 }}>
+              {/* Frosted glass open quote mark */}
+              <motion.span
+                className="text-[120px] lg:text-[180px] font-serif leading-none select-none -mb-12 lg:-mb-16"
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "2px rgba(255,255,255,0.2)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.1))",
+                  textShadow: "0 0 30px rgba(255,255,255,0.15)",
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+              >
                 &ldquo;
               </motion.span>
 
-              <motion.h2 className="text-xl lg:text-[28px] font-bold text-[#1A1A1A] leading-snug mb-5 max-w-[620px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+              <motion.h2 className="text-xl lg:text-[28px] font-bold text-white leading-snug mb-5 max-w-[620px] drop-shadow-sm" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
                 The hardest part of AI product design is coherence
               </motion.h2>
 
-              <motion.p className="text-[15px] lg:text-[16px] text-[#555] leading-[1.8] max-w-[560px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+              <motion.p className="text-[15px] lg:text-[16px] text-white/80 leading-[1.8] max-w-[560px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
                 The challenge was to make prompts, voices, knowledge, telephony, workflows, analytics, and billing feel like one product — not a collection of admin panels. Every design decision had to serve both technical depth and operational clarity. That tension between power and simplicity is what made this project meaningful.
               </motion.p>
 
-              {/* Giant close quote mark */}
-              <motion.span className="text-[120px] lg:text-[180px] font-serif leading-none select-none -mt-8 lg:-mt-12" style={{ color: `${accent}15` }} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }}>
+              {/* Frosted glass close quote mark */}
+              <motion.span
+                className="text-[120px] lg:text-[180px] font-serif leading-none select-none -mt-8 lg:-mt-12"
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "2px rgba(255,255,255,0.2)",
+                  filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.1))",
+                  textShadow: "0 0 30px rgba(255,255,255,0.15)",
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 &rdquo;
               </motion.span>
             </div>
