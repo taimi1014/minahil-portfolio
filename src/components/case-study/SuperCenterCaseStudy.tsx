@@ -685,9 +685,11 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
-          <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
+          <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28" style={{ minHeight: "500px" }}>
             {/* HueGrid aurora gradient */}
-            <ShaderGradient className="absolute inset-0" />
+            <div className="absolute inset-0">
+              <ShaderGradient variant="reflection" />
+            </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
               <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-8 border border-white/20 text-white/70 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -743,7 +745,9 @@ export default function SuperCenterCaseStudy() {
           {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
           <div className="relative overflow-hidden" style={{ minHeight: "520px" }}>
             {/* Dark aurora gradient in footer */}
-            <ShaderGradient variant="footer" className="absolute inset-0" />
+            <div className="absolute inset-0">
+              <ShaderGradient variant="footer" />
+            </div>
 
             {/* Large "Thank you" text — parallax scroll effect */}
             <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
