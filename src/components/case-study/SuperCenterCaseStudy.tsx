@@ -237,12 +237,12 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 2. QUICK SNAPSHOT ═══ */}
-          <div data-section="snapshot" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="snapshot" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <QuickSnapshot badge="At a glance" body="SuperCenter brings together the core systems needed to run Voice AI in production: agent creation, voice selection and cloning, knowledge management, conversational pathways, telephony, batch calling, analytics, call review, and billing. Instead of treating these as separate tools, the product connects them into one operational workflow." infoBlocks={[{ label: "Role", value: "Product Designer" }, { label: "Platform", value: "Web app" }, { label: "Scope", value: "Agent builder, model settings, knowledge base, voice library, pathways, phone numbers, batches, analytics, call logs, billing" }]} accent={accent} />
           </div>
 
           {/* ═══ 3. THE CHALLENGE — Split layout: text left, image right ═══ */}
-          <div data-section="challenge" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="challenge" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-5" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               The problem
             </motion.span>
@@ -279,7 +279,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 4. THE GOAL — Cards with icons ═══ */}
-          <div data-section="goal" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="goal" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Design objective
             </motion.span>
@@ -304,7 +304,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 5. RESEARCH & DISCOVERY — Two-column: Methods + Insights ═══ */}
-          <div data-section="research" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="research" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Discovery
             </motion.span>
@@ -354,7 +354,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ USER INTERVIEWS — Animated area graph + findings ═══ */}
-          <div data-section="interviews" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="interviews" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               User interviews
             </motion.span>
@@ -418,7 +418,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ WHAT DIDN'T WORK — Assumptions vs Reality ═══ */}
-          <div data-section="didnt-work" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="didnt-work" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Design pivots
             </motion.span>
@@ -476,7 +476,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 6. MY ROLE — Visual list with accent markers ═══ */}
-          <div data-section="role" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="role" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               What I owned
             </motion.span>
@@ -497,23 +497,47 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 7. PRODUCT VISION — Large quote style ═══ */}
-          <div data-section="vision" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="vision" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               North star
             </motion.span>
 
-            <motion.div className="border-l-[3px] pl-6 lg:pl-8 py-2" style={{ borderColor: accent }} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-              <h2 className="text-2xl lg:text-[32px] font-bold text-[#1A1A1A] leading-tight mb-4">
-                One system for the full lifecycle of a voice agent
-              </h2>
-              <p className="text-[15px] text-[#555] leading-[1.75] max-w-[620px]">
-                Users can create an agent, define its behavior, tune the model, attach knowledge, assign a voice, connect a number, send calls, review outcomes, and manage spend from the same system. That shift — from isolated setup screens to one operational layer — is what gives the product its value.
-              </p>
-            </motion.div>
+            <motion.h2 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A] mb-4" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              One system for the full lifecycle of a voice agent
+            </motion.h2>
+            <motion.p className="text-[15px] text-[#555] leading-[1.75] mb-10 max-w-[620px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }}>
+              That shift — from isolated setup screens to one operational layer — is what gives the product its value.
+            </motion.p>
+
+            {/* Animated lifecycle flow */}
+            <div className="flex flex-wrap gap-3 justify-center">
+              {[
+                { step: "Create", icon: "+" },
+                { step: "Configure", icon: "\u2699" },
+                { step: "Train", icon: "\u{1F4DA}" },
+                { step: "Voice", icon: "\u{1F3A4}" },
+                { step: "Connect", icon: "\u{1F4DE}" },
+                { step: "Launch", icon: "\u{1F680}" },
+                { step: "Monitor", icon: "\u{1F4CA}" },
+                { step: "Optimize", icon: "\u21BB" },
+              ].map((item, i) => (
+                <motion.div key={i} className="flex items-center gap-2" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.06 }}>
+                  <div className="flex items-center gap-2 rounded-full border border-[#E0E0E0] bg-white px-4 py-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+                    <span className="text-[16px]">{item.icon}</span>
+                    <span className="text-[13px] font-medium text-[#333]">{item.step}</span>
+                  </div>
+                  {i < 7 && (
+                    <motion.svg width="20" height="10" viewBox="0 0 20 10" className="text-[#CCC] hidden sm:block" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.06 }}>
+                      <path d="M0 5 L14 5 M10 1 L14 5 L10 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                    </motion.svg>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* ═══ 8. DESIGN PRINCIPLES ═══ */}
-          <div data-section="principles" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="principles" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <DesignPrinciples badge="Principles" heading="Four decisions shaped the product" principles={[
               { title: "Design around workflows, not features", description: "Users are not trying to \"configure AI.\" They are trying to complete tasks: create an agent, attach knowledge, launch calls, and review results. The platform had to reflect that job flow." },
               { title: "Reveal complexity progressively", description: "The platform includes deep controls across LLM, STT, TTS, prompting, interruption logic, routing, transcripts, and credits. The experience needed to expose essential decisions first, then reveal advanced depth when needed." },
@@ -523,7 +547,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 9. SOLUTION — What I Designed ═══ */}
-          <div data-section="solution" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="solution" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               The system
             </motion.span>
@@ -561,12 +585,12 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 10. SCREEN GALLERY ═══ */}
-          <div data-section="screens" className="px-6 lg:px-16 py-16 lg:py-24 bg-[#F8FAFF]">
+          <div data-section="screens" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
             <ScreenGallery badge="Product screens" heading="The system in detail" screens={SCREEN_GALLERY} accent={accent} />
           </div>
 
           {/* ═══ KPI SNAPSHOT — Before/After metrics table ═══ */}
-          <div data-section="kpi" className="px-6 lg:px-16 py-16 lg:py-24" style={{ background: "linear-gradient(180deg, #0A0A14, #121220)" }}>
+          <div data-section="kpi" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24" style={{ background: "linear-gradient(180deg, #0A0A14, #121220)" }}>
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4 border border-white/20 text-white/60" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Impact metrics
             </motion.span>
@@ -607,7 +631,7 @@ export default function SuperCenterCaseStudy() {
           </div>
 
           {/* ═══ 11. OUTCOME — Visual metrics cards ═══ */}
-          <div data-section="outcome" className="px-6 lg:px-16 py-16 lg:py-24">
+          <div data-section="outcome" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24">
             <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-4" style={{ backgroundColor: `${accent}10`, color: accent, border: `1px solid ${accent}20` }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Outcome
             </motion.span>
@@ -632,14 +656,12 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
-            {/* Vibrant animated mesh gradient — matches hero energy */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #7C3AED, #9333EA, #6D28D9)" }}>
-              {/* Blob 1 — large pink/magenta */}
-              <motion.div className="absolute w-[600px] h-[600px] rounded-full blur-[140px]" style={{ background: "#EC4899", opacity: 0.4, top: "-20%", left: "-10%" }} animate={{ x: [0, 80, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
-              {/* Blob 2 — blue accent */}
-              <motion.div className="absolute w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: "#3B82F6", opacity: 0.35, top: "10%", right: "-15%" }} animate={{ x: [0, -60, 0], y: [0, -40, 0], scale: [1, 1.25, 1] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} />
-              {/* Blob 3 — warm purple */}
-              <motion.div className="absolute w-[450px] h-[450px] rounded-full blur-[130px]" style={{ background: "#A855F7", opacity: 0.5, bottom: "-15%", left: "25%" }} animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1.1, 0.95, 1.1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }} />
+            {/* Smooth animated gradient — subtle, premium */}
+            <div className="absolute inset-0">
+              <Image src={`${IMG}/hero-bg.webp`} alt="" fill className="object-cover" sizes="100vw" />
+              <div className="absolute inset-0 bg-black/10" />
+              {/* Soft animated overlay blob */}
+              <motion.div className="absolute w-[600px] h-[600px] rounded-full blur-[160px]" style={{ background: "rgba(255,255,255,0.08)", top: "10%", left: "20%" }} animate={{ x: [0, 40, 0], y: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
             </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
