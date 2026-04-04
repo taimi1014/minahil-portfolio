@@ -632,20 +632,14 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ 12. WHAT I LEARNED — Mesh gradient + giant quote marks ═══ */}
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28">
-            {/* Animated mesh gradient background */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 opacity-30" style={{
-                background: `
-                  radial-gradient(ellipse 80% 60% at 20% 40%, ${accent}25, transparent),
-                  radial-gradient(ellipse 60% 80% at 80% 60%, #7C3AED15, transparent),
-                  radial-gradient(ellipse 90% 50% at 50% 30%, #2563EB10, transparent),
-                  linear-gradient(180deg, #F8FAFF, #F0F2FF, #F8FAFF)
-                `,
-              }} />
-              {/* Subtle animated gradient shift */}
-              <motion.div className="absolute inset-0 opacity-20" style={{
-                background: `radial-gradient(ellipse 50% 50% at 60% 50%, ${accent}20, transparent)`,
-              }} animate={{ x: [0, 30, 0], y: [0, -20, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+            {/* Animated mesh gradient background — visible and dynamic */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, #F4F0FF, #EDE8FF, #F0EAFF)" }}>
+              {/* Blob 1 — top left, accent color */}
+              <motion.div className="absolute w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: `${accent}30`, top: "-10%", left: "-5%" }} animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
+              {/* Blob 2 — center right, purple */}
+              <motion.div className="absolute w-[400px] h-[400px] rounded-full blur-[100px]" style={{ background: "#8B5CF640", top: "20%", right: "-5%" }} animate={{ x: [0, -50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
+              {/* Blob 3 — bottom center, blue */}
+              <motion.div className="absolute w-[350px] h-[350px] rounded-full blur-[100px]" style={{ background: "#3B82F620", bottom: "-10%", left: "30%" }} animate={{ x: [0, 40, 0], y: [0, -25, 0], scale: [1.1, 1, 1.1] }} transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 4 }} />
             </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
@@ -673,63 +667,62 @@ export default function SuperCenterCaseStudy() {
             </div>
           </div>
 
-          {/* ═══ HIRING NOTE ═══ */}
-          <div className="px-6 lg:px-16 py-14 lg:py-18 border-t border-[#EBEBEB]">
-            <motion.div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 lg:gap-10 max-w-[800px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accent}10` }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <p className="text-[15px] text-[#1A1A1A] font-semibold mb-1">Looking for a product designer who ships?</p>
-                <p className="text-[13px] text-[#666] leading-[1.7]">
-                  I thrive in complex product spaces — turning ambiguity into structure, aligning cross-functional teams, and delivering design systems that scale. I care about craft, but I care more about outcomes. If you need someone who can own a product end-to-end and make it better at every layer, let&apos;s connect.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* ═══ THANK YOU — Parallax footer ═══ */}
-          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", height: "60vh", minHeight: "400px" }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              {/* Large "Thank you" text with stroke outline — parallax effect */}
+          {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
+          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "500px" }}>
+            {/* Large "Thank you" text with stroke outline — parallax */}
+            <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-8">
               <motion.h2
-                className="text-[120px] lg:text-[200px] xl:text-[260px] font-bold select-none leading-none"
+                className="text-[100px] lg:text-[180px] xl:text-[240px] font-bold select-none leading-none"
                 style={{
                   color: "transparent",
-                  WebkitTextStroke: "1px rgba(255,255,255,0.08)",
+                  WebkitTextStroke: "1px rgba(255,255,255,0.06)",
                   letterSpacing: "-0.02em",
                 }}
-                initial={{ y: 60, opacity: 0 }}
+                initial={{ y: 80, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 Thank you
               </motion.h2>
             </div>
 
             {/* Foreground content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-16 lg:pt-20 pb-32 lg:pb-40">
+              {/* Hiring note */}
+              <motion.div
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm px-8 py-7 max-w-[520px] mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="text-[11px] font-semibold tracking-widest uppercase text-white/30 mb-3">A note for hiring managers</p>
+                <p className="text-[15px] text-white/80 leading-[1.75] mb-4">
+                  I design complex products that people can actually use. I&apos;ve led product design across fintech, AI, and SaaS — shipping end-to-end, not just screens. I move fast, align teams, and obsess over the details that make systems feel coherent.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["End-to-end ownership", "Cross-functional leadership", "0 → 1 products", "Design systems"].map((tag) => (
+                    <span key={tag} className="text-[10px] font-medium text-white/50 px-2.5 py-1 rounded-full border border-white/10">{tag}</span>
+                  ))}
+                </div>
+              </motion.div>
+
               <motion.p
-                className="text-[14px] text-white/40 mb-4"
+                className="text-[14px] text-white/40 mb-3"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.4 }}
               >
-                Thanks for reading this case study
+                Thanks for reading
               </motion.p>
               <motion.p
-                className="text-[18px] lg:text-[22px] text-white/80 font-medium mb-8 max-w-[400px]"
+                className="text-[18px] lg:text-[22px] text-white/80 font-medium mb-6 max-w-[400px]"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.45 }}
+                transition={{ delay: 0.5 }}
               >
                 Have a project in mind? Let&apos;s talk.
               </motion.p>
