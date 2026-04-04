@@ -9,7 +9,8 @@ import TableOfContents from "@/components/case-study/TableOfContents";
 import QuickSnapshot from "@/components/case-study/sections/QuickSnapshot";
 import DesignPrinciples from "@/components/case-study/sections/DesignPrinciples";
 import ScreenGallery from "@/components/case-study/sections/ScreenGallery";
-import { ShaderGradient } from "@/components/case-study/ShaderGradient";
+import { ShaderGradientReflection } from "@/components/case-study/ShaderGradientReflection";
+import { ShaderGradientFooter } from "@/components/case-study/ShaderGradientFooter";
 
 const SECTIONS = [
   { id: "hero", title: "Hero", shortTitle: "Hero", type: "hero" as const },
@@ -688,7 +689,7 @@ export default function SuperCenterCaseStudy() {
           <div data-section="learned" className="relative overflow-hidden py-20 lg:py-28" style={{ minHeight: "500px" }}>
             {/* HueGrid aurora gradient */}
             <div className="absolute inset-0">
-              <ShaderGradient variant="reflection" />
+              <ShaderGradientReflection />
             </div>
 
             <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
@@ -744,9 +745,9 @@ export default function SuperCenterCaseStudy() {
 
           {/* ═══ THANK YOU — Parallax footer with hiring note ═══ */}
           <div className="relative overflow-hidden" style={{ minHeight: "520px" }}>
-            {/* Dark aurora gradient in footer */}
+            {/* Halftone gradient footer */}
             <div className="absolute inset-0">
-              <ShaderGradient variant="footer" />
+              <ShaderGradientFooter />
             </div>
 
             {/* Large "Thank you" text — parallax scroll effect */}
