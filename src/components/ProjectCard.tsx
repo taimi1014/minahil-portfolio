@@ -12,13 +12,16 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   themeColor: string;
+  layout?: "grid" | "list";
 }
 
-export default function ProjectCard({ project, index, themeColor }: ProjectCardProps) {
+export default function ProjectCard({ project, index, themeColor, layout = "list" }: ProjectCardProps) {
   const theme = useMemo(() => THEME_COLORS.find(t => t.value === themeColor), [themeColor]);
   const accent = theme?.accent || "#1A1A1A";
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+
+  const isGrid = layout === "grid";
 
   // Mouse-following cursor
   const mouseX = useMotionValue(0);
@@ -33,34 +36,38 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
     mouseY.set(e.clientY - rect.top);
   }, [mouseX, mouseY]);
 
-  // Get blur placeholder from slug
   const blurDataURL = useMemo(() => {
     const slug = project.imageSrc.split("/").pop()?.replace(/\.\w+$/, "") || "";
     return blurPlaceholders[slug];
   }, [project.imageSrc]);
 
-  // Link if this project has a case study (custom or embedded)
   const hasCaseStudy = ["supercenter", "crediblex", "crediblex-drawdowns", "tranxpay", "tmc", "fams", "jetclass"].includes(project.slug);
 
   const card = (
-      <motion.article
+    <motion.article
       ref={cardRef}
-      className={`group relative bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] max-w-[85%] lg:max-w-[72%] mx-auto border border-[#E8E8E8] ${hasCaseStudy ? "cursor-none" : "cursor-default"}`}
-      initial={{ opacity: 0, y: 40 }}
+      layout
+      className={`group relative bg-[#F5F5F5] rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] border border-[#E8E8E8] ${
+        hasCaseStudy ? "cursor-none" : "cursor-default"
+      } ${isGrid ? "" : "max-w-[85%] lg:max-w-[72%] mx-auto"}`}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration: 0.6,
-        delay: index === 0 ? 0.3 : 0.1,
+        duration: 0.5,
+        delay: index === 0 ? 0.2 : 0.05,
         ease: [0.25, 0.46, 0.45, 0.94],
+        layout: { type: "spring", stiffness: 300, damping: 30 },
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Custom cursor — filled pill that follows mouse */}
+      {/* Custom cursor pill */}
       <motion.div
-        className="pointer-events-none absolute z-40 flex items-center gap-1.5 px-4 py-2 rounded-full text-[12px] font-semibold tracking-wide whitespace-nowrap"
+        className={`pointer-events-none absolute z-40 flex items-center gap-1.5 rounded-full font-semibold tracking-wide whitespace-nowrap ${
+          isGrid ? "px-3 py-1.5 text-[10px]" : "px-4 py-2 text-[12px]"
+        }`}
         style={{
           x: springX,
           y: springY,
@@ -78,7 +85,7 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
       >
         {hasCaseStudy ? (
           <>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width={isGrid ? "11" : "13"} height={isGrid ? "11" : "13"} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="7" y1="17" x2="17" y2="7" />
               <polyline points="7 7 17 7 17 17" />
             </svg>
@@ -89,21 +96,24 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
         )}
       </motion.div>
 
-      {/* Image container with overlay and tags */}
-      <div className="relative overflow-hidden bg-[#F5F5F5] flex items-center justify-center p-4 lg:p-6">
+      {/* Image container */}
+      <div className={`relative overflow-hidden bg-[#F5F5F5] flex items-center justify-center ${
+        isGrid ? "p-2.5 lg:p-3" : "p-4 lg:p-6"
+      }`}>
         <Image
           src={project.imageSrc}
           alt={project.imageAlt}
           width={1200}
           height={800}
-          className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03] rounded-[16px]"
+          className={`w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03] ${
+            isGrid ? "rounded-[10px]" : "rounded-[16px]"
+          }`}
           loading={index < 2 ? "eager" : "lazy"}
           placeholder={blurDataURL ? "blur" : "empty"}
           blurDataURL={blurDataURL}
-          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 55vw, 600px"
+          sizes={isGrid ? "(max-width: 768px) 90vw, 45vw" : "(max-width: 768px) 90vw, (max-width: 1200px) 55vw, 600px"}
         />
 
-        {/* Theme-colored overlay on hover — only for clickable cards */}
         {hasCaseStudy && (
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"
@@ -111,17 +121,20 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
           />
         )}
 
-        {/* Tags — always visible on top-left of image in accent color */}
         {project.tags && project.tags.length > 0 && (
-          <div className="absolute top-3 left-3 lg:top-4 lg:left-4 flex flex-wrap gap-1.5 z-30">
+          <div className={`absolute flex flex-wrap gap-1 z-30 ${
+            isGrid ? "top-2 left-2 lg:top-3 lg:left-3" : "top-3 left-3 lg:top-4 lg:left-4 gap-1.5"
+          }`}>
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-2.5 py-[4px] rounded-full text-[10px] lg:text-[11px] font-semibold tracking-wide backdrop-blur-sm"
+                className={`inline-flex items-center rounded-full font-semibold tracking-wide backdrop-blur-sm ${
+                  isGrid ? "px-2 py-[2px] text-[8px] lg:text-[9px]" : "px-2.5 py-[4px] text-[10px] lg:text-[11px]"
+                }`}
                 style={{
                   backgroundColor: themeColor,
                   color: accent,
-                  boxShadow: `0 1px 4px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03)`,
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03)",
                   border: `1px solid ${accent}20`,
                 }}
               >
@@ -133,11 +146,15 @@ export default function ProjectCard({ project, index, themeColor }: ProjectCardP
       </div>
 
       {/* Text content */}
-      <div className="px-4 py-3 space-y-1 bg-white">
-        <h3 className="text-[16px] font-semibold text-text-primary leading-snug">
+      <div className={`bg-white ${isGrid ? "px-3 py-2.5 space-y-0.5" : "px-4 py-3 space-y-1"}`}>
+        <h3 className={`font-semibold text-text-primary leading-snug ${
+          isGrid ? "text-[13px] lg:text-[14px]" : "text-[16px]"
+        }`}>
           {project.title}
         </h3>
-        <p className="text-[12.5px] text-text-secondary leading-[1.6]">
+        <p className={`text-text-secondary leading-[1.6] ${
+          isGrid ? "text-[11px] lg:text-[11.5px] line-clamp-2" : "text-[12.5px]"
+        }`}>
           {project.description}
         </p>
 
