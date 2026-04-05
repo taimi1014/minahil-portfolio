@@ -294,7 +294,7 @@ export default function Resume() {
             </p>
             <p className="text-[13px] text-text-secondary">ITU, University</p>
           </div>
-          <span className="text-[12px] text-text-tertiary">2014 — 2018</span>
+          <span className="text-[12px] text-text-tertiary">2016 — 2020</span>
         </div>
       </motion.section>
     </div>
