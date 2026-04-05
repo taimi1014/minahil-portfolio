@@ -51,31 +51,24 @@ function getPatternCSS(pattern: string, color: string): React.CSSProperties | nu
   }
 }
 
-function useNoiseTexture() {
-  const [dataUrl, setDataUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const canvas = document.createElement("canvas");
-    const size = 256;
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const imageData = ctx.createImageData(size, size);
-    const pixels = imageData.data;
-    for (let i = 0; i < pixels.length; i += 4) {
-      const v = Math.random() * 255;
-      pixels[i] = v;
-      pixels[i + 1] = v;
-      pixels[i + 2] = v;
-      pixels[i + 3] = 255;
-    }
-    ctx.putImageData(imageData, 0, 0);
-    setDataUrl(canvas.toDataURL("image/png"));
-  }, []);
-
-  return dataUrl;
+// SVG turbulence noise — produces organic film-grain effect
+function NoiseOverlay({ opacity }: { opacity: number }) {
+  return (
+    <div className="absolute inset-0 z-0 pointer-events-none" style={{ opacity }}>
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <filter id="noiseFilter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="4"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noiseFilter)" opacity="1" />
+      </svg>
+    </div>
+  );
 }
 
 export default function Home() {
@@ -84,7 +77,7 @@ export default function Home() {
   const [pattern, setPattern] = useState("none");
   const [patternOpacity, setPatternOpacity] = useState(1);
 
-  const noiseUrl = useNoiseTexture();
+  // noiseLevel controls texture opacity (0 = off, 1 = max)
   const patternStyles = useMemo(() => getPatternCSS(pattern, themeColor), [pattern, themeColor]);
 
   // Persist theme to localStorage for case study pages
@@ -97,19 +90,8 @@ export default function Home() {
       className="min-h-screen lg:h-screen lg:overflow-hidden transition-colors duration-500 relative"
       style={{ backgroundColor: themeColor }}
     >
-      {/* Canvas-generated noise texture overlay */}
-      {noiseLevel > 0 && noiseUrl && (
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            opacity: noiseLevel * 0.35,
-            backgroundImage: `url(${noiseUrl})`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "256px 256px",
-            mixBlendMode: "multiply",
-          }}
-        />
-      )}
+      {/* SVG noise texture overlay */}
+      {noiseLevel > 0 && <NoiseOverlay opacity={noiseLevel * 0.3} />}
 
       {/* Pattern overlay */}
       {patternStyles && (
