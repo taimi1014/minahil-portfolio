@@ -1,17 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useMemo } from "react";
 import Sidebar from "@/components/Sidebar";
 import ProjectGrid from "@/components/ProjectGrid";
 import { THEME_COLORS } from "@/components/ThemeSwitcher";
-
-interface RippleState {
-  x: number;
-  y: number;
-  color: string;
-  id: number;
-}
 
 function hexToRgb(hex: string) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -86,28 +78,6 @@ export default function Home() {
   const [patternOpacity, setPatternOpacity] = useState(1);
 
   const patternStyles = useMemo(() => getPatternCSS(pattern, themeColor), [pattern, themeColor]);
-  const [ripple, setRipple] = useState<RippleState | null>(null);
-
-  // Color change with ripple animation
-  const handleThemeChangeWithRipple = useCallback((newColor: string, x?: number, y?: number) => {
-    if (newColor === themeColor) {
-      setThemeColor(newColor);
-      return;
-    }
-    if (x !== undefined && y !== undefined) {
-      setRipple({ x, y, color: newColor, id: Date.now() });
-      // Swap the actual bg color after the ripple covers the screen
-      setTimeout(() => {
-        setThemeColor(newColor);
-      }, 700);
-      // Remove ripple after animation completes
-      setTimeout(() => {
-        setRipple(null);
-      }, 1400);
-    } else {
-      setThemeColor(newColor);
-    }
-  }, [themeColor]);
 
   // Persist theme to localStorage
   useEffect(() => {
@@ -119,37 +89,6 @@ export default function Home() {
       className="min-h-screen lg:h-screen lg:overflow-hidden transition-colors duration-500 relative"
       style={{ backgroundColor: themeColor }}
     >
-      {/* Ink drop ripple overlay */}
-      <AnimatePresence>
-        {ripple && (
-          <motion.div
-            key={ripple.id}
-            className="fixed pointer-events-none"
-            style={{
-              top: ripple.y,
-              left: ripple.x,
-              x: "-50%",
-              y: "-50%",
-              backgroundColor: ripple.color === "#FFFFFF" ? "#F5F5F5" : ripple.color,
-              borderRadius: "50%",
-              zIndex: 50,
-            }}
-            initial={{ width: 0, height: 0, opacity: 0.9 }}
-            animate={{
-              width: "300vmax",
-              height: "300vmax",
-              opacity: [0.9, 0.95, 0.9, 0],
-              transition: {
-                width: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                height: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                opacity: { duration: 1.4, times: [0, 0.3, 0.7, 1], ease: "easeOut" },
-              },
-            }}
-            exit={{ opacity: 0 }}
-          />
-        )}
-      </AnimatePresence>
-
       {/* SVG noise texture overlay */}
       {noiseLevel > 0 && <NoiseOverlay opacity={noiseLevel * 0.3} />}
 
@@ -164,7 +103,7 @@ export default function Home() {
       <div className="flex flex-col lg:flex-row lg:h-full relative z-10">
         <Sidebar
           themeColor={themeColor}
-          onThemeChange={handleThemeChangeWithRipple}
+          onThemeChange={setThemeColor}
           noiseLevel={noiseLevel}
           onNoiseChange={setNoiseLevel}
           pattern={pattern}

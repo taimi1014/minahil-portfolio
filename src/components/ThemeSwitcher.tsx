@@ -34,7 +34,7 @@ function haptic() {
 
 interface ThemeSwitcherProps {
   currentColor: string;
-  onColorChange: (color: string, x?: number, y?: number) => void;
+  onColorChange: (color: string) => void;
   noiseLevel: number;
   onNoiseChange: (level: number) => void;
   pattern: string;
@@ -99,14 +99,7 @@ export default function ThemeSwitcher({
               {THEME_COLORS.map((theme) => (
                 <button
                   key={theme.name}
-                  onClick={(e) => {
-                    if (currentColor === theme.value) return;
-                    haptic();
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const x = rect.left + rect.width / 2;
-                    const y = rect.top + rect.height / 2;
-                    onColorChange(theme.value, x, y);
-                  }}
+                  onClick={() => { haptic(); onColorChange(theme.value); }}
                   className="relative w-[19px] h-[19px] rounded-full transition-transform duration-150 hover:scale-125 active:scale-95 cursor-pointer"
                   style={{ backgroundColor: theme.name === "Default" ? "#E8E8E8" : theme.dot }}
                   title={theme.name}

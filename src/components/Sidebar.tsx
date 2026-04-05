@@ -19,7 +19,7 @@ const ROLE_TITLES = [
 
 interface SidebarProps {
   themeColor: string;
-  onThemeChange: (color: string, x?: number, y?: number) => void;
+  onThemeChange: (color: string) => void;
   noiseLevel: number;
   onNoiseChange: (level: number) => void;
   pattern: string;
