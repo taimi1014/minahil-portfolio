@@ -20,6 +20,15 @@ export const projects: Project[] = [
     tags: ["Fintech", "SaaS", "Mobile App"],
   },
   {
+    slug: "crediblex-drawdowns",
+    title: "CredibleX — SME Drawdown & Invoice Management",
+    description:
+      "Designed the drawdown request flow for SME borrowers — enabling businesses to initiate credit drawdowns, attach multiple invoices, and track disbursement status directly from their dashboard.",
+    imageSrc: "/images/projects/crediblex-drawdowns.webp",
+    imageAlt: "CredibleX SME drawdown dashboard with invoice upload and disbursement tracking",
+    tags: ["Fintech", "SaaS", "B2B"],
+  },
+  {
     slug: "tranxpay",
     title: "TranxPay — Mobile-First Banking Platform",
     description:
