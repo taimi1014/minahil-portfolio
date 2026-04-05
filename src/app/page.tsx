@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Sidebar from "@/components/Sidebar";
 import ProjectGrid from "@/components/ProjectGrid";
 import { THEME_COLORS } from "@/components/ThemeSwitcher";
@@ -85,7 +85,7 @@ export default function Home() {
   const [patternOpacity, setPatternOpacity] = useState(1);
 
   const noiseUrl = useNoiseTexture();
-  const patternStyles = getPatternCSS(pattern, themeColor);
+  const patternStyles = useMemo(() => getPatternCSS(pattern, themeColor), [pattern, themeColor]);
 
   // Persist theme to localStorage for case study pages
   useEffect(() => {
