@@ -99,7 +99,47 @@ export default function ThemeSwitcher({
               {THEME_COLORS.map((theme) => (
                 <button
                   key={theme.name}
-                  onClick={() => { haptic(); onColorChange(theme.value); }}
+                  onClick={(e) => {
+                    haptic();
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = rect.left + rect.width / 2;
+                    const y = rect.top + rect.height / 2;
+
+                    // View Transitions API — expanding circle from click point
+                    if (
+                      typeof document !== "undefined" &&
+                      "startViewTransition" in document &&
+                      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ) {
+                      const transition = (document as unknown as { startViewTransition: (cb: () => void) => { ready: Promise<void> } }).startViewTransition(() => {
+                        onColorChange(theme.value);
+                      });
+
+                      transition.ready.then(() => {
+                        const maxRadius = Math.hypot(
+                          Math.max(x, window.innerWidth - x),
+                          Math.max(y, window.innerHeight - y)
+                        );
+
+                        document.documentElement.animate(
+                          {
+                            clipPath: [
+                              `circle(0px at ${x}px ${y}px)`,
+                              `circle(${maxRadius}px at ${x}px ${y}px)`,
+                            ],
+                          },
+                          {
+                            duration: 600,
+                            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+                            pseudoElement: "::view-transition-new(root)",
+                          }
+                        );
+                      });
+                    } else {
+                      // Fallback — no animation
+                      onColorChange(theme.value);
+                    }
+                  }}
                   className="relative w-[19px] h-[19px] rounded-full transition-transform duration-150 hover:scale-125 active:scale-95 cursor-pointer"
                   style={{ backgroundColor: theme.name === "Default" ? "#E8E8E8" : theme.dot }}
                   title={theme.name}

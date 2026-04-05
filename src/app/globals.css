@@ -26,6 +26,13 @@ body {
   display: none;
 }
 
+/* View Transitions — disable default cross-fade, let clip-path handle it */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 /* Range slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
