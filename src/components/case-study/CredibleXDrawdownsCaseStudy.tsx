@@ -131,19 +131,49 @@ export default function CredibleXDrawdownsCaseStudy() {
             </motion.p>
           </div>
 
-          {/* ── USER INSIGHT ── */}
+          {/* ── USER INSIGHT — Split layout with visual cards ── */}
           <div data-section="insight" className="px-6 lg:px-16 xl:px-20 py-12 lg:py-16 bg-[#F8FAFF]">
-            <motion.span className="inline-block text-[11px] font-semibold tracking-widest uppercase mb-4" style={{ color: accent }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>User Insight</motion.span>
+            <motion.span className="inline-block text-[11px] font-semibold tracking-widest uppercase mb-6" style={{ color: accent }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>User Insight</motion.span>
 
-            <motion.div className="border-l-[3px] pl-6" style={{ borderColor: accent }} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-[17px] lg:text-[19px] text-[#333] leading-[1.7] font-medium max-w-[600px]">
-                Most SMEs already manage invoice records in Excel spreadsheets. The system was forcing them to re-enter the same data manually inside the drawdown journey.
-              </p>
-            </motion.div>
+            <motion.h2 className="text-[22px] lg:text-[26px] font-bold text-[#1A1A1A] leading-snug mb-8" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              The data already existed. The system just wasn&apos;t using it.
+            </motion.h2>
 
-            <motion.p className="text-[15px] text-[#555] leading-[1.75] mt-6 max-w-[600px]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-              The real opportunity was not to make manual entry slightly better. It was to remove manual entry altogether for high-volume users.
-            </motion.p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Left — What users were doing */}
+              <motion.div className="rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-[0_1px_6px_rgba(0,0,0,0.04)]" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+                <h3 className="text-[15px] font-semibold text-[#1A1A1A] mb-4 pb-3 border-b border-[#EBEBEB]">What SMEs were doing</h3>
+                <ul className="space-y-3.5">
+                  {[
+                    "Managing invoice records in Excel spreadsheets as part of daily operations",
+                    "Manually re-entering the same data into the drawdown form",
+                    "Switching back and forth between their files and the platform",
+                    "Spending 15–30 minutes on what should take seconds",
+                  ].map((item, i) => (
+                    <motion.li key={i} className="flex gap-2.5 items-start text-[13.5px] text-[#555] leading-[1.6]" initial={{ opacity: 0, x: -8 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.06 }}>
+                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#E53E3E" }} />
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Right — The real opportunity */}
+              <motion.div className="rounded-xl border border-[#E0E0E0] bg-white p-6 shadow-[0_1px_6px_rgba(0,0,0,0.04)]" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
+                <h3 className="text-[15px] font-semibold text-[#1A1A1A] mb-4 pb-3 border-b border-[#EBEBEB]">The opportunity</h3>
+                <div className="border-l-[3px] pl-5 mb-5" style={{ borderColor: accent }}>
+                  <p className="text-[15px] text-[#333] leading-[1.7] font-medium">
+                    The real opportunity was not to make manual entry slightly better. It was to remove manual entry altogether for high-volume users.
+                  </p>
+                </div>
+                <div className="rounded-lg bg-[#F8FAFF] px-4 py-3 border border-[#E8E8E8]">
+                  <p className="text-[12px] font-semibold tracking-widest uppercase mb-1.5" style={{ color: accent }}>Core reframe</p>
+                  <p className="text-[13px] text-[#666] leading-[1.6]">
+                    Stop asking users to re-create data that already exists. Let them upload it.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* ── THE SOLUTION ── */}
@@ -207,8 +237,8 @@ export default function CredibleXDrawdownsCaseStudy() {
                 <h3 className="text-[16px] font-semibold text-[#1A1A1A]">Submission confirmation</h3>
               </div>
               <p className="text-[14px] text-[#666] leading-[1.7] mb-5 max-w-[560px]">Clear next-step guidance — approval, review, and disbursement stages communicated upfront.</p>
-              <div className="rounded-xl overflow-hidden border border-[#E8E8E8] shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[480px]">
-                <Image src={`${IMG}/confirmation.webp`} alt="Submission confirmation" width={1440} height={944} className="w-full h-auto" loading="lazy" sizes="480px" />
+              <div className="rounded-xl overflow-hidden border border-[#E8E8E8] shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+                <Image src={`${IMG}/confirmation.webp`} alt="Submission confirmation" width={1440} height={944} className="w-full h-auto" loading="lazy" sizes="(max-width: 768px) 95vw, 800px" />
               </div>
             </motion.div>
           </div>
@@ -260,17 +290,92 @@ export default function CredibleXDrawdownsCaseStudy() {
             </motion.div>
           </div>
 
-          {/* ── CLOSING ── */}
-          <div data-section="closing" className="px-6 lg:px-16 xl:px-20 py-12 lg:py-16">
-            <motion.span className="inline-block text-[11px] font-semibold tracking-widest uppercase mb-4" style={{ color: accent }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>Summary</motion.span>
+          {/* ── REFLECTION — Purple gradient + giant quote marks ── */}
+          <div data-section="closing" className="relative overflow-hidden py-20 lg:py-28">
+            {/* Purple gradient background */}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #7C3AED, #9333EA, #6D28D9)" }}>
+              <div className="absolute inset-0 bg-black/5" />
+              {/* Soft animated blob */}
+              <motion.div
+                className="absolute w-[400px] h-[400px] rounded-full blur-[140px] pointer-events-none"
+                style={{ background: "rgba(255,255,255,0.08)", top: "10%", left: "20%" }}
+                animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
 
-            <motion.div className="border-l-[3px] pl-6" style={{ borderColor: accent }} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-[15px] text-[#444] leading-[1.8] max-w-[600px]">
-                I identified that the drawdown request flow was breaking down for SMEs submitting high invoice volumes. I redesigned the journey by introducing a bulk upload flow — allowing SMEs to upload invoice data from Excel, automatically extract records, review them in a table, and resolve issues through row-level error handling. This shifted the experience from a repetitive manual task to a scalable workflow, reducing friction in a core financial journey.
-              </p>
-            </motion.div>
+            <div className="relative z-10 px-6 lg:px-16 flex flex-col items-center text-center">
+              <motion.span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase mb-8 border border-white/20 text-white/70 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+                Summary
+              </motion.span>
 
-            <div className="h-20" />
+              {/* Giant open quote */}
+              <motion.span
+                className="text-[100px] lg:text-[140px] font-serif leading-none select-none -mb-10 lg:-mb-14"
+                style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+              >
+                &ldquo;
+              </motion.span>
+
+              <motion.p className="text-[15px] lg:text-[17px] text-white/85 leading-[1.8] max-w-[560px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+                I identified that the drawdown request flow was breaking down for SMEs submitting high invoice volumes. I redesigned the journey by introducing a bulk upload flow — allowing SMEs to upload invoice data from Excel, automatically extract records, review them in a table, and resolve issues through row-level error handling. This shifted the experience from a repetitive manual task to a scalable workflow.
+              </motion.p>
+
+              {/* Giant close quote */}
+              <motion.span
+                className="text-[100px] lg:text-[140px] font-serif leading-none select-none -mt-6 lg:-mt-10"
+                style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                &rdquo;
+              </motion.span>
+            </div>
+          </div>
+
+          {/* ── THANK YOU FOOTER ── */}
+          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "420px" }}>
+            {/* Animated blob */}
+            <motion.div
+              className="absolute w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none"
+              style={{ background: `${accent}`, opacity: 0.06, top: "15%", left: "15%" }}
+              animate={{ x: [0, 100, 60, 0], y: [0, -20, 40, 0], scale: [1, 1.2, 1.1, 1] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {/* Large "Thank you" outline text */}
+            <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
+              <motion.h2
+                className="text-[90px] lg:text-[160px] xl:text-[200px] font-bold select-none leading-none whitespace-nowrap"
+                style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.05)", letterSpacing: "-0.03em" }}
+                initial={{ y: 80, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Thank you
+              </motion.h2>
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-14 lg:pt-18 pb-28 lg:pb-36">
+              <motion.p className="text-[14px] text-white/40 mb-3" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+                Thanks for reading
+              </motion.p>
+              <motion.p className="text-[18px] lg:text-[22px] text-white/80 font-medium mb-6 max-w-[400px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
+                Have a project in mind? Let&apos;s talk.
+              </motion.p>
+              <motion.a href="/" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white border border-white/20 hover:bg-white/10 transition-colors" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+                Back to portfolio
+              </motion.a>
+            </div>
           </div>
 
         </div>
