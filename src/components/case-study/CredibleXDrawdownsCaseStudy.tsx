@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { THEME_COLORS } from "@/components/ThemeSwitcher";
 import TableOfContents from "@/components/case-study/TableOfContents";
+import { ShaderGradientFooter } from "@/components/case-study/ShaderGradientFooter";
 
 const SECTIONS = [
   { id: "hero", title: "Hero", shortTitle: "Hero", type: "hero" as const },
@@ -339,39 +340,55 @@ export default function CredibleXDrawdownsCaseStudy() {
             </div>
           </div>
 
-          {/* ── THANK YOU FOOTER ── */}
-          <div className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #0A0A14, #08080F)", minHeight: "420px" }}>
-            {/* Animated blob */}
-            <motion.div
-              className="absolute w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none"
-              style={{ background: `${accent}`, opacity: 0.06, top: "15%", left: "15%" }}
-              animate={{ x: [0, 100, 60, 0], y: [0, -20, 40, 0], scale: [1, 1.2, 1.1, 1] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-            />
+          {/* ── THANK YOU — Same as SuperCenter: halftone + hiring note ── */}
+          <div className="relative overflow-hidden" style={{ minHeight: "520px" }}>
+            {/* Halftone gradient footer */}
+            <div className="absolute inset-0">
+              <ShaderGradientFooter />
+            </div>
 
-            {/* Large "Thank you" outline text */}
+            {/* Large "Thank you" text — parallax */}
             <div className="absolute inset-0 flex items-end justify-center overflow-hidden pb-6">
               <motion.h2
-                className="text-[90px] lg:text-[160px] xl:text-[200px] font-bold select-none leading-none whitespace-nowrap"
+                className="text-[100px] lg:text-[180px] xl:text-[240px] font-bold select-none leading-none whitespace-nowrap"
                 style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.05)", letterSpacing: "-0.03em" }}
-                initial={{ y: 80, opacity: 0 }}
+                initial={{ y: 100, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 Thank you
               </motion.h2>
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-14 lg:pt-18 pb-28 lg:pb-36">
-              <motion.p className="text-[14px] text-white/40 mb-3" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+            {/* Foreground content */}
+            <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-16 lg:pt-20 pb-32 lg:pb-40">
+              {/* Hiring note */}
+              <motion.div
+                className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm px-8 py-7 max-w-[520px] mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="text-[11px] font-semibold tracking-widest uppercase text-white/30 mb-3">A note for hiring managers</p>
+                <p className="text-[15px] text-white/80 leading-[1.75] mb-4">
+                  I design complex products that people can actually use. I&apos;ve led product design across fintech, AI, and SaaS — shipping end-to-end, not just screens. I move fast, align teams, and obsess over the details that make systems feel coherent.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["End-to-end ownership", "Cross-functional leadership", "0 → 1 products", "Design systems"].map((tag) => (
+                    <span key={tag} className="text-[10px] font-medium text-white/50 px-2.5 py-1 rounded-full border border-white/10">{tag}</span>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.p className="text-[14px] text-white/40 mb-3" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
                 Thanks for reading
               </motion.p>
-              <motion.p className="text-[18px] lg:text-[22px] text-white/80 font-medium mb-6 max-w-[400px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
+              <motion.p className="text-[18px] lg:text-[22px] text-white/80 font-medium mb-6 max-w-[400px]" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
                 Have a project in mind? Let&apos;s talk.
               </motion.p>
-              <motion.a href="/" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white border border-white/20 hover:bg-white/10 transition-colors" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
+              <motion.a href="/" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium text-white border border-white/20 hover:bg-white/10 transition-colors" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.6 }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                 Back to portfolio
               </motion.a>
