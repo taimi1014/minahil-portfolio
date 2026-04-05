@@ -8,7 +8,6 @@ import { THEME_COLORS } from "@/components/ThemeSwitcher";
 import TableOfContents from "@/components/case-study/TableOfContents";
 import QuickSnapshot from "@/components/case-study/sections/QuickSnapshot";
 import DesignPrinciples from "@/components/case-study/sections/DesignPrinciples";
-import ScreenGallery from "@/components/case-study/sections/ScreenGallery";
 import { ShaderGradientReflection } from "@/components/case-study/ShaderGradientReflection";
 import { ShaderGradientFooter } from "@/components/case-study/ShaderGradientFooter";
 
@@ -24,7 +23,6 @@ const SECTIONS = [
   { id: "vision", title: "Product Vision", shortTitle: "Vision", type: "text" as const },
   { id: "principles", title: "Design Principles", shortTitle: "Principles", type: "text" as const },
   { id: "solution", title: "What I Designed", shortTitle: "Solution", type: "text" as const },
-  { id: "screens", title: "Screen Gallery", shortTitle: "Screens", type: "text" as const },
   { id: "kpi", title: "KPI Snapshot", shortTitle: "KPIs", type: "text" as const },
   { id: "outcome", title: "Outcome", shortTitle: "Outcome", type: "text" as const },
   { id: "learned", title: "What I Learned", shortTitle: "Learned", type: "text" as const },
@@ -33,7 +31,7 @@ const SECTIONS = [
 const IMG = "/images/case-studies/supercenter";
 
 // Animated icon components
-function AnimatedIcon({ type, accent }: { type: string; accent: string }) {
+const AnimatedIcon = React.memo(function AnimatedIcon({ type, accent }: { type: string; accent: string }) {
   const light = `${accent}15`;
   const icons: Record<string, React.ReactNode> = {
     workflow: (
@@ -79,7 +77,7 @@ function AnimatedIcon({ type, accent }: { type: string; accent: string }) {
     ),
   };
   return icons[type] || icons.workflow;
-}
+});
 
 const SOLUTION_BLOCKS = [
   {
@@ -129,21 +127,6 @@ const SOLUTION_BLOCKS = [
     body: "Once agents are live, analytics dashboards, call logs, summaries, filters, and billing controls help teams understand performance, usage, and cost.",
     images: [{ src: `${IMG}/analytics.webp`, alt: "Analytics dashboard" }],
   },
-];
-
-const SCREEN_GALLERY = [
-  { captionTitle: "Operational visibility from day one", captionCopy: "A dashboard designed to surface the signals that matter: call activity, quick actions, and the fastest paths into setup, launch, and monitoring.", images: [{ src: `${IMG}/dashboard.webp`, alt: "SuperCenter dashboard" }] },
-  { captionTitle: "Build the agent in one focused workspace", captionCopy: "A modular builder that brings prompt design, voice selection, first-message setup, and live preview into one clear publishing flow.", images: [{ src: `${IMG}/agent-creation-1.webp`, alt: "Agent creation" }, { src: `${IMG}/agent-creation-2.webp`, alt: "Agent builder detail" }] },
-  { captionTitle: "Advanced controls without advanced friction", captionCopy: "Language, STT, TTS, LLM, interruption logic, and keyword tuning were grouped into a cleaner system for confident configuration.", images: [{ src: `${IMG}/model-config-1.webp`, alt: "Model configuration" }, { src: `${IMG}/model-config-2.webp`, alt: "Model settings" }] },
-  { captionTitle: "Attach the right context to every agent", captionCopy: "Knowledge was designed as a working layer — searchable, structured, and easy to connect across documents, text, websites, and video.", images: [{ src: `${IMG}/knowledge-base-1.webp`, alt: "Knowledge base" }, { src: `${IMG}/knowledge-base-2.webp`, alt: "Knowledge detail" }] },
-  { captionTitle: "Test knowledge before it goes live", captionCopy: "A dedicated playground helps teams validate knowledge retrieval before the agent ever answers a real conversation.", images: [{ src: `${IMG}/knowledge-playground.webp`, alt: "Knowledge playground" }] },
-  { captionTitle: "Make voice selection feel intentional", captionCopy: "Curated voice exploration, default libraries, and custom voice collections make voice selection feel deliberate.", images: [{ src: `${IMG}/voices-library.webp`, alt: "Voices library" }] },
-  { captionTitle: "From prompt to prototype in minutes", captionCopy: "Voice design, upload, and cloning workflows turn voice creation into a creative product surface.", images: [{ src: `${IMG}/voice-design.webp`, alt: "Voice design" }, { src: `${IMG}/voice-cloning.webp`, alt: "Voice cloning" }] },
-  { captionTitle: "Design the conversation behind the call", captionCopy: "Templates, use cases, and pathway generation help teams shape branching voice workflows.", images: [{ src: `${IMG}/pathways.webp`, alt: "Pathways" }] },
-  { captionTitle: "Go from configuration to deployment", captionCopy: "Phone number purchase, import, and routing setup turn configuration into real telephony operations.", images: [{ src: `${IMG}/phone-buy.webp`, alt: "Buy numbers" }, { src: `${IMG}/phone-options.webp`, alt: "Phone options" }] },
-  { captionTitle: "Review every conversation with context", captionCopy: "Call logs surface transcripts, summaries, durations, and outcomes so teams can review agent performance.", images: [{ src: `${IMG}/call-logs-1.webp`, alt: "Call logs" }, { src: `${IMG}/call-logs-2.webp`, alt: "Call log detail" }] },
-  { captionTitle: "Measure quality, usage, and performance together", captionCopy: "Analytics bring call volume, success rates, cost data, and usage trends into one view.", images: [{ src: `${IMG}/analytics.webp`, alt: "Analytics" }] },
-  { captionTitle: "Make usage and spend legible", captionCopy: "Billing and credits give teams clear visibility into consumption, remaining balance, and cost breakdowns.", images: [{ src: `${IMG}/billing-1.webp`, alt: "Billing" }, { src: `${IMG}/billing-2.webp`, alt: "Credits" }] },
 ];
 
 // Outcome metrics
@@ -587,11 +570,6 @@ export default function SuperCenterCaseStudy() {
                 </motion.div>
               ))}
             </div>
-          </div>
-
-          {/* ═══ 10. SCREEN GALLERY ═══ */}
-          <div data-section="screens" className="px-6 lg:px-16 xl:px-20 py-16 lg:py-24 bg-[#F8FAFF]">
-            <ScreenGallery badge="Product screens" heading="The system in detail" screens={SCREEN_GALLERY} accent={accent} />
           </div>
 
           {/* ═══ KPI SNAPSHOT — Before/After metrics table ═══ */}

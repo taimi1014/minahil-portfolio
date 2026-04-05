@@ -24,11 +24,12 @@ export default function AnimatedBlob({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
+    let animationId = 0;
     let time = 0;
+    let isVisible = false;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 2);
+      const dpr = Math.min(window.devicePixelRatio, 1.5);
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
@@ -36,9 +37,13 @@ export default function AnimatedBlob({
     };
 
     resize();
-    window.addEventListener("resize", resize);
 
-    // Simple 2D noise function (value noise)
+    const hash = (n: number) => {
+      let h = n;
+      h = ((h >> 13) ^ h) * 1274126177;
+      return ((h >> 16) ^ h) & 0xff;
+    };
+
     const noise = (x: number, y: number) => {
       const ix = Math.floor(x);
       const iy = Math.floor(y);
@@ -46,36 +51,28 @@ export default function AnimatedBlob({
       const fy = y - iy;
       const sx = fx * fx * (3 - 2 * fx);
       const sy = fy * fy * (3 - 2 * fy);
-
-      const hash = (n: number) => {
-        let h = n;
-        h = ((h >> 13) ^ h) * 1274126177;
-        return ((h >> 16) ^ h) & 0xff;
-      };
-
       const h00 = hash(ix * 7 + iy * 131) / 255;
       const h10 = hash((ix + 1) * 7 + iy * 131) / 255;
       const h01 = hash(ix * 7 + (iy + 1) * 131) / 255;
       const h11 = hash((ix + 1) * 7 + (iy + 1) * 131) / 255;
-
       return h00 + sx * (h10 - h00) + sy * (h01 - h00) + sx * sy * (h00 - h10 - h01 + h11);
     };
 
     const draw = () => {
+      if (!isVisible) return; // Skip rendering when offscreen
+
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
       const h = rect.height;
-
       ctx.clearRect(0, 0, w, h);
 
-      // Draw 2 organic blobs
       for (let b = 0; b < 2; b++) {
         const cx = w * (0.3 + b * 0.4) + Math.sin(time * (0.8 + b * 0.3)) * w * 0.15;
         const cy = h * 0.5 + Math.cos(time * (0.6 + b * 0.2)) * h * 0.2;
         const baseRadius = Math.min(w, h) * (0.25 + b * 0.05);
 
         ctx.beginPath();
-        const points = 64;
+        const points = 48; // Reduced from 64
         for (let i = 0; i <= points; i++) {
           const angle = (i / points) * Math.PI * 2;
           const noiseVal = noise(
@@ -85,7 +82,6 @@ export default function AnimatedBlob({
           const r = baseRadius * (0.7 + noiseVal * 0.6);
           const x = cx + Math.cos(angle) * r;
           const y = cy + Math.sin(angle) * r;
-
           if (i === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
@@ -96,7 +92,6 @@ export default function AnimatedBlob({
         gradient.addColorStop(0, `rgba(${color},${blobOpacity})`);
         gradient.addColorStop(0.5, `rgba(${color},${blobOpacity * 0.5})`);
         gradient.addColorStop(1, `rgba(${color},0)`);
-
         ctx.fillStyle = gradient;
         ctx.filter = "blur(30px)";
         ctx.fill();
@@ -107,11 +102,25 @@ export default function AnimatedBlob({
       animationId = requestAnimationFrame(draw);
     };
 
-    draw();
+    // Only animate when visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animationId) {
+          animationId = requestAnimationFrame(draw);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(canvas);
+
+    const onResize = () => resize();
+    window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      observer.disconnect();
+      window.removeEventListener("resize", onResize);
     };
   }, [color, opacity, speed]);
 
