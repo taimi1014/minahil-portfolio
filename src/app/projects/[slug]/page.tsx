@@ -1,9 +1,10 @@
 import CaseStudyClient from "@/components/case-study/CaseStudyClient";
 import SuperCenterCaseStudy from "@/components/case-study/SuperCenterCaseStudy";
+import CredibleXDrawdownsCaseStudy from "@/components/case-study/CredibleXDrawdownsCaseStudy";
 import FigmaEmbed from "@/components/case-study/FigmaEmbed";
 import { embedCaseStudies } from "@/data/case-studies/embeds";
 
-const CUSTOM_CASE_STUDIES = ["supercenter", "crediblex"];
+const CUSTOM_CASE_STUDIES = ["supercenter", "crediblex", "crediblex-drawdowns"];
 
 export function generateStaticParams() {
   const embedSlugs = embedCaseStudies.map((cs) => ({ slug: cs.slug }));
@@ -27,6 +28,9 @@ export default async function CaseStudyPage({
   // Custom case study pages
   if (slug === "supercenter") {
     return <SuperCenterCaseStudy />;
+  }
+  if (slug === "crediblex-drawdowns") {
+    return <CredibleXDrawdownsCaseStudy />;
   }
 
   // Check if it's an embedded case study (Figma prototype)
